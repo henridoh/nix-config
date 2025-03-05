@@ -16,6 +16,7 @@
     "steam"
     "steam-unwrapped"
     "gateway" # jetbrains
+    "spotify"
     "rust-rover"
   ];
 }

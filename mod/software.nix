@@ -3,6 +3,7 @@
   environment.systemPackages = let
     editors = with pkgs; [
       vscode
+      emacs
       jetbrains.gateway
       jetbrains.rust-rover
     ];

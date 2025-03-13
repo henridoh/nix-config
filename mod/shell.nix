@@ -15,6 +15,7 @@
     docker-compose
     starship
     unzip
+    wl-clipboard
   ];
 
   programs = {

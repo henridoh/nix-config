@@ -19,6 +19,8 @@
       wireguard-tools
       bitwarden
       kitty
+      nixfmt-rfc-style
+      nil
     ];
 
     media = with pkgs; [

@@ -1,9 +1,10 @@
-{ mod, ... }: {
+{ mod, ... }:
+{
   networking.hostName = "solo";
 
   services.xserver.enable = true;
 
-  imports = with mod; [ 
+  imports = with mod; [
     collections.pc-common
     keyboard
     nvidia-gpu

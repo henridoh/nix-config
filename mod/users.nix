@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.users.hd = {
     description = "Henri";
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.fish;
-    packages = [];
+    packages = [ ];
   };
 }

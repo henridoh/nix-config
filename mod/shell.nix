@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  environment.shells = with pkgs; [ 
+{ pkgs, ... }:
+{
+  environment.shells = with pkgs; [
     fish
     bashInteractive
   ];

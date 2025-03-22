@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     pavucontrol
     alsa-utils
   ];
-  
+
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;

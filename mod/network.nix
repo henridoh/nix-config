@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.macAddress = "random";
 
@@ -10,7 +11,7 @@
     useRoutingFeatures = "client";
   };
 
-   networking.networkmanager.ensureProfiles.profiles = {
+  networking.networkmanager.ensureProfiles.profiles = {
     "tuda-vpn" = {
       connection = {
         autoconnect = "false";

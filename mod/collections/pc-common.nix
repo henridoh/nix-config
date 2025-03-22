@@ -1,4 +1,5 @@
-{ mod, ... }: {
+{ mod, ... }:
+{
   imports = with mod; [
     audio
     boot

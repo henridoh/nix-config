@@ -6,4 +6,5 @@
     nssmdns4 = true;
     openFirewall = true;
   };
+  services.udisks2.enable = true;
 }

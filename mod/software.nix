@@ -26,6 +26,7 @@
     media = with pkgs; [
       vlc
       spotify
+      calibre
     ];
 
     productivity = with pkgs; [

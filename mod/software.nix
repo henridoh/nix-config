@@ -52,6 +52,10 @@
 
   programs = {
     firefox.enable = true;
+    thunderbird = {
+      enable = true;
+      package = pkgs.thunderbird-latest;
+    };
   };
 
   # Some excludes

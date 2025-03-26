@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -8,4 +8,6 @@
       device = "nodev";
     };
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
 }

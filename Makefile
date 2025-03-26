@@ -19,4 +19,3 @@ _switch_%:
 		false; \
 	fi
 	nixos-rebuild switch --flake .#$*
-

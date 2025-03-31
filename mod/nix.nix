@@ -28,9 +28,4 @@
       "spotify"
       "rust-rover"
     ];
-
-  # TODO this is for zulip 5.11.1
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-32.3.3"
-  ];
 }

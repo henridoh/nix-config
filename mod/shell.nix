@@ -1,21 +1,23 @@
 { pkgs, ... }:
 {
   environment.shells = with pkgs; [
-    fish
     bashInteractive
+    fish
   ];
 
   environment.systemPackages = with pkgs; [
-    wget
-    htop
     bc
+    docker-compose
+    fd
     gh
     gnumake
+    htop
     killall
-    stow
-    docker-compose
+    ripgrep
     starship
+    stow
     unzip
+    wget
     wl-clipboard
   ];
 

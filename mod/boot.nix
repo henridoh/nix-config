@@ -9,5 +9,9 @@
     };
   };
 
+  # otherwise /tmp is on disk. This *may* be problematic as nix
+  # builds in /tmp but I think my swap is large enough...
+  boot.tmp.useTmpfs = true;
+
   boot.kernelPackages = pkgs.linuxPackages_6_13;
 }

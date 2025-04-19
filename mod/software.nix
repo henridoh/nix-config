@@ -21,7 +21,6 @@
         wireguard-tools
         bitwarden
         kitty
-        nixfmt-rfc-style
         nil
       ];
 

@@ -1,10 +1,18 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+    }@inputs:
     let
       lib = nixpkgs.lib;
       mod = import ./mod { inherit lib; };
@@ -25,6 +33,6 @@
         };
       };
 
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
     };
 }

@@ -19,6 +19,7 @@
     unzip
     wget
     wl-clipboard
+    nixfmt-rfc-style
   ];
 
   programs = {

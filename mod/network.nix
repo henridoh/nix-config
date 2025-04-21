@@ -11,6 +11,8 @@
     useRoutingFeatures = "client";
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   networking.networkmanager.ensureProfiles.profiles = {
     "tuda-vpn" = {
       connection = {

@@ -35,15 +35,8 @@
         obsidian
       ];
 
-      dev = with pkgs; [
-        rustup
-        python313
-        gcc
-        binutils
-      ];
-
     in
-    editors ++ messengers ++ util ++ media ++ productivity ++ dev;
+    editors ++ messengers ++ util ++ media ++ productivity;
 
   virtualisation = {
     docker.enable = true;

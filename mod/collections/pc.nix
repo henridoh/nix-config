@@ -6,12 +6,13 @@
     fonts
     locale
     network
-    nix
+    nix-configuration
     security
     services
-    shell
-    software
+    software.development
+    software.programs
+    software.shell
+    software.window-manager
     users
-    window-manager
   ];
 }

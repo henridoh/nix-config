@@ -5,10 +5,10 @@
   services.xserver.enable = true;
 
   imports = with mod; [
-    collections.pc-common
-    keyboard
+    collections.pc
+    software.keyboard
+    software.games
     nvidia-gpu
-    games
     ./hardware-configuration.nix
   ];
 

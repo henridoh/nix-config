@@ -17,8 +17,9 @@
     }@inputs:
     let
       lib = nixpkgs.lib;
-      mod = import ./mod { inherit lib; };
-      specialArgs = { inherit inputs mod; };
+      lib' = import ./lib.nix { inherit lib; };
+      mod = lib'.walk-dir ./mod;
+      specialArgs = { inherit inputs mod lib'; };
     in
     {
       nixosConfigurations = {

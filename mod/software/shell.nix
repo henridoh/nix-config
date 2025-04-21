@@ -10,7 +10,6 @@
     docker-compose
     fd
     gh
-    gnumake
     htop
     killall
     ripgrep
@@ -19,7 +18,6 @@
     unzip
     wget
     wl-clipboard
-    nixfmt-rfc-style
   ];
 
   programs = {

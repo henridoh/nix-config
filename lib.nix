@@ -1,7 +1,6 @@
 { lib, ... }:
-
-let
-  walk =
+rec {
+  walk-dir =
     path:
     let
       dir = builtins.readDir path;
@@ -12,10 +11,8 @@ let
         if value == "regular" then
           import (path + "/${name}")
         else if value == "directory" then
-          walk (path + "/${name}")
+          walk-dir (path + "/${name}")
         else
-          builtins.throw "Cannot handle item of type ${value}";
+          builtins.throw "Item of type ${value} are unsupported.";
     }) dir;
-
-in
-walk ./.
+}

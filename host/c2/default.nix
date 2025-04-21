@@ -5,7 +5,7 @@
   imports =
     with mod;
     [
-      collections.pc-common
+      collections.pc
       ./hardware-configuration.nix
     ]
     ++ (with inputs.nixos-hardware.nixosModules; [

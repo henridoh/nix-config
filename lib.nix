@@ -13,6 +13,6 @@ rec {
         else if value == "directory" then
           walk-dir (path + "/${name}")
         else
-          builtins.throw "Item of type ${value} are unsupported.";
+          builtins.throw "Items of type ${value} are unsupported.";
     }) dir;
 }

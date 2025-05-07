@@ -11,6 +11,7 @@
     security
     services
     software.development
+    software.editors
     software.programs
     software.shell
     software.window-manager

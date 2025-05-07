@@ -17,7 +17,7 @@
     shell = pkgs.fish;
     packages = [ ];
   };
-
   home-manager.users."hd" = lib.mkAliasDefinitions options.home;
+
   users.users.root.hashedPassword = "!";
 }

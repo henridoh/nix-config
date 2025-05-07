@@ -7,4 +7,5 @@
     openFirewall = true;
   };
   services.udisks2.enable = true;
+  services.emacs.enable = true;
 }

@@ -4,6 +4,7 @@
     audio
     boot
     fonts
+    gpg
     locale
     network
     nix-configuration

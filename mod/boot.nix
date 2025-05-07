@@ -14,4 +14,5 @@
   boot.tmp.useTmpfs = true;
 
   boot.kernelPackages = pkgs.linuxPackages_6_13;
+  boot.kernel.sysctl."kernel.sysrq" = 1;
 }

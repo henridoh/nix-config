@@ -18,6 +18,7 @@
     unzip
     wget
     wl-clipboard
+    colmena
   ];
 
   programs = {

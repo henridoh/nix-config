@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    colmena.url = "github:zhaofengli/colmena";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,6 +14,7 @@
       self,
       nixpkgs,
       nixos-hardware,
+      colmena,
       home-manager,
     }@inputs:
     let
@@ -37,5 +39,15 @@
       };
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
+      colmenaHive = colmena.lib.makeHive {
+        meta.nixpkgs = import nixpkgs {
+          system = "x65_64-linux";
+        };
+        "roam" = {
+          deployment.targetHost = "185.163.117.158";
+          imports = [ ./host/roam ];
+        };
+      };
     };
 }

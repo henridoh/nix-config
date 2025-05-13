@@ -10,10 +10,10 @@
     nix-configuration
     security
     services
+    shell
     software.development
     software.editors
     software.programs
-    software.shell
     software.window-manager
     users
   ];

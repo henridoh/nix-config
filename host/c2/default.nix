@@ -1,18 +1,13 @@
-{ mod, inputs, ... }:
+{ inputs, ... }:
 {
   networking.hostName = "c2";
 
-  imports =
-    with mod;
-    [
-      collections.pc
-      ./hardware-configuration.nix
-    ]
-    ++ (with inputs.nixos-hardware.nixosModules; [
-      common-cpu-intel
-      common-pc-laptop
-      common-pc-laptop-ssd
-    ]);
+  imports = with inputs.nixos-hardware.nixosModules; [
+    ./hardware-configuration.nix
+    common-cpu-intel
+    common-pc-laptop
+    common-pc-laptop-ssd
+  ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 

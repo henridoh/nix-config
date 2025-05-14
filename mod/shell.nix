@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   environment.shells = with pkgs; [
     bashInteractive
@@ -18,6 +18,7 @@
     unzip
     wget
     wl-clipboard
+    inputs.colmena.packages."x86_64-linux".colmena # todo use overlay
   ];
 
   programs = {

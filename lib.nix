@@ -9,7 +9,7 @@ rec {
       name = lib.removeSuffix ".nix" name;
       value =
         if value == "regular" then
-          builtins.toPath (path + "/${name}")
+          path + "/${name}"
         else if value == "directory" then
           walk-dir (path + "/${name}")
         else

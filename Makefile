@@ -10,6 +10,9 @@ all:
 
 switch: _switch_${HOST}
 
+apply:
+	colmena apply
+
 _switch_:
 	@echo "ERROR: couldn't find hostname"
 	@false

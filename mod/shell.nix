@@ -18,7 +18,7 @@
     unzip
     wget
     wl-clipboard
-    colmena
+    inputs.colmena.packages."x86_64-linux".colmena # todo use overlay
   ];
 
   programs = {

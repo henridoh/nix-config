@@ -2,10 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    colmena.url = "github:zhaofengli/colmena";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,20 +21,26 @@
       lib = nixpkgs.lib;
       lib' = import ./lib.nix { inherit lib; };
       mod = lib'.walk-dir ./mod;
-      specialArgs = { inherit inputs mod lib'; };
+      specialArgs = { inherit inputs lib'; mod = lib'.walk-dir ./mod; };
     in
     {
       nixosConfigurations = {
         "solo" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           inherit specialArgs;
-          modules = [ ./host/solo ];
+          modules = [
+            ./host/solo
+            mod.shared.pc
+          ];
         };
 
         "c2" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           inherit specialArgs;
-          modules = [ ./host/c2 ];
+          modules = [
+            ./host/c2
+            mod.shared.pc
+          ];
         };
       };
 
@@ -45,11 +48,16 @@
 
       colmenaHive = colmena.lib.makeHive {
         meta.nixpkgs = import nixpkgs {
-          system = "x65_64-linux";
+          system = "x86_64-linux";
+          inherit specialArgs;
         };
         "roam" = {
           deployment.targetHost = "185.163.117.158";
-          imports = [ ./host/roam ];
+          deployment.buildOnTarget = true;
+          imports = [
+            ./host/roam
+            mod.shared.all
+          ];
         };
       };
     };

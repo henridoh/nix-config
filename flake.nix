@@ -59,6 +59,7 @@
           imports = [
             ./host/roam
             mod.shared.all
+            mod.server.all
           ];
         };
       };

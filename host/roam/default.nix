@@ -1,12 +1,8 @@
-{ ... }:
+{ lib', ... }:
 {
   networking.hostName = "roam";
 
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
-  services.openssh.enable = true;
+  imports = lib'.import-recursive ./.;
 
   # ====== DON'T CHANGE ======
   system.stateVersion = "24.11";

@@ -1,5 +1,6 @@
 { lib, ... }:
 rec {
+  # TODO make a version that only includes nix paths.
   walk-dir =
     path:
     let
@@ -15,4 +16,8 @@ rec {
         else
           builtins.throw "Items of type ${value} are unsupported.";
     }) dir;
+
+  # Takes a path `p` and returns a flattened lists of all files in that
+  # directory, ignoring `p/default.nix`.
+  import-recursive = path: lib.attrsets.collect builtins.isPath (walk-dir path // { default = { }; });
 }

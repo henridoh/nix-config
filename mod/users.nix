@@ -23,6 +23,12 @@
     };
     users.root = {
       hashedPassword = "!";
+
+      # I don't like the unprivileged users to have unrestricted access to root
+      # but this is required for colmena. Better options are
+      #  - only authorize root's pubkey
+      #  - create password protected key
+      # TODO: do one of the above
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEG+dd4m98aKEWfFa/7VZUlJNX0axvIlHVihT8w7RLyY"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIsoj2+esEebRwDV2PuNRt9Vz28oolOy+Hc2THwrWTAB"

@@ -16,13 +16,10 @@
       address = "fe80::1";
       interface = "ens3";
     };
+  };
 
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [
-        80
-        443
-      ];
-    };
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
   };
 }

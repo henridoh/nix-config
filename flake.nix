@@ -21,7 +21,15 @@
       lib = nixpkgs.lib;
       lib' = import ./lib.nix { inherit lib; };
       mod = lib'.walk-dir ./mod;
-      specialArgs = { inherit inputs lib' mod; };
+      var = lib'.walk-dir ./var;
+      specialArgs = {
+        inherit
+          inputs
+          lib'
+          mod
+          var
+          ;
+      };
     in
     {
       nixosConfigurations = {
@@ -30,7 +38,8 @@
           inherit specialArgs;
           modules = [
             ./host/solo
-            mod.shared.pc
+            mod.common._nixos_mod
+            mod.pc-common._nixos_mod
           ];
         };
 
@@ -39,7 +48,8 @@
           inherit specialArgs;
           modules = [
             ./host/c2
-            mod.shared.pc
+            mod.common._nixos_mod
+            mod.pc-common._nixos_mod
           ];
         };
       };
@@ -58,7 +68,7 @@
           };
           imports = [
             ./host/roam
-            mod.shared.all
+            mod.common._nixos_mod
           ];
         };
       };

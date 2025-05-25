@@ -1,12 +1,8 @@
-{ mod, ... }:
+{ lib', ... }:
 {
   networking.hostName = "solo";
 
-  imports = with mod; [
-    software.keyboard
-    nvidia-gpu
-    ./hardware-configuration.nix
-  ];
+  imports = lib'.import-recursive ./.;
 
   powerManagement = {
     enable = true;

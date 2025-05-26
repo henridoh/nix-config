@@ -8,7 +8,7 @@ rec {
   wireguard-network = {
     "roam" = {
       publicKey = publicKey."roam";
-      ips = [ "10.10.11.1/24" ];
+      ips = [ "10.10.11.1/32" ];
       allowedIPs = [ "10.10.11.0/24" ];
       endpoint = "185.163.117.158:51820";
       persistentKeepalive = 17;
@@ -20,8 +20,8 @@ rec {
     };
     "c2" = {
       publicKey = publicKey."c2";
-      ips = [ "10.10.11.2/24" ];
-      allowedIPs = [ "10.10.11.2/32" ];
+      ips = [ "10.10.11.3/24" ];
+      allowedIPs = [ "10.10.11.3/32" ];
     };
   };
   keyFile = "/var/secrets/wg.key";

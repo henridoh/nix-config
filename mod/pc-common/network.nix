@@ -1,4 +1,9 @@
-{ host, var, ... }:
+{
+  host,
+  var,
+  lib,
+  ...
+}:
 {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -18,7 +23,7 @@
         "onet" = {
           address = var.wg.wireguard-network.${host}.ips;
           privateKeyFile = var.wg.keyFile;
-          peers = var.wg.peers-for host;
+          peers = [ (lib.removeAttrs var.wg.wireguard-network."roam" [ "ips" ]) ];
         };
         "mullvad" =
           let

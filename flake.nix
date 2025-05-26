@@ -21,14 +21,13 @@
       lib = nixpkgs.lib;
       lib' = import ./lib.nix { inherit lib; };
       mod = lib'.walk-dir ./mod;
-      var = lib'.walk-dir ./var;
+
       specialArgs = {
-        inherit
-          inputs
-          lib'
-          mod
-          var
-          ;
+        inherit inputs lib' mod;
+        var = (lib'.walk-dir ./var).map_import;
+      };
+      overlays = _: {
+        nixpkgs.overlays = [ colmena.overlay ];
       };
     in
     {
@@ -38,8 +37,9 @@
           inherit specialArgs;
           modules = [
             ./host/solo
-            mod.common._nixos_mod
-            mod.pc-common._nixos_mod
+            mod.common.to_mod
+            mod.pc-common.to_mod
+            overlays
           ];
         };
 
@@ -48,8 +48,9 @@
           inherit specialArgs;
           modules = [
             ./host/c2
-            mod.common._nixos_mod
-            mod.pc-common._nixos_mod
+            mod.common.to_mod
+            mod.pc-common.to_mod
+            overlays
           ];
         };
       };
@@ -68,7 +69,8 @@
           };
           imports = [
             ./host/roam
-            mod.common._nixos_mod
+            mod.common.to_mod
+            overlays
           ];
         };
       };

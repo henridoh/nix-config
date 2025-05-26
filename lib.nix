@@ -1,33 +1,47 @@
 { lib, ... }:
+with builtins;
 rec {
   walk-dir =
-    path:
     let
-      dir = builtins.readDir path;
+      walk-dir-inner =
+        path:
+        let
+          dir = readDir path;
 
-      subpaths = lib.mapAttrs' (filename: value: {
-        name = lib.removeSuffix ".nix" filename;
-        value =
-          if value == "regular" then
-            path + "/${filename}"
-          else if value == "directory" then
-            walk-dir (path + "/${filename}")
-          else
-            builtins.throw "Items of type ${value} are unsupported.";
-      }) dir;
-    in
-    subpaths
-    // rec {
-      _files = lib.collect builtins.isPath (subpaths // { default = { }; });
-      _nix_files = builtins.filter (lib.hasSuffix ".nix") _files;
-      _nixos_mod =
-        { ... }:
-        {
-          imports = _nix_files;
+        in
+        lib.mapAttrs' (filename: value: {
+          name = lib.removeSuffix ".nix" filename;
+          value =
+            if value == "regular" then
+              path + "/${filename}"
+            else if value == "directory" then
+              walk-dir-inner (path + "/${filename}")
+            else
+              throw "Items of type ${value} are unsupported.";
+        }) dir;
+
+      helper-attrs =
+        subpaths:
+        let
+          _files = lib.collect (x: isPath x || isString x) subpaths;
+          _nix_files = filter (lib.hasSuffix ".nix") _files;
+        in
+        rec {
+          to_mod = _: {
+            imports = _nix_files;
+          };
+          to_mod_without_default = without_default.to_mod;
+          collect_nix_files = _nix_files;
+          map_import = lib.mapAttrsRecursive (_: import) subpaths;
+          without_default =
+            let
+              subpaths' = removeAttrs subpaths [ "default" ];
+            in
+            with-helper-attrs subpaths';
         };
-    };
 
-  # Takes a path `p` and returns a list of all files in that
-  # directory recursively, ignoring `p/default.nix`.
-  import-recursive = path: (walk-dir path)._files;
+      with-helper-attrs =
+        x: if isAttrs x then lib.mapAttrs (_: with-helper-attrs) x // helper-attrs x else x;
+    in
+    p: with-helper-attrs (walk-dir-inner p);
 }

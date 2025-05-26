@@ -1,8 +1,11 @@
 { lib', ... }:
+let
+  submodules = lib'.walk-dir ./.;
+in
 {
   networking.hostName = "solo";
 
-  imports = lib'.import-recursive ./.;
+  imports = [ submodules.to_mod_without_default ];
 
   powerManagement = {
     enable = true;

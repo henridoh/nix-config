@@ -3,6 +3,7 @@ rec {
   publicKey = {
     "roam" = "yUbdRfRFFVe4FPUaD7pVByLRhpF9Yl1kethxRUHpVgs=";
     "solo" = "SRDguh0aN/RH8q/uB09w/OZTbP9JZZy0ABowbWIfkTk=";
+    "c2" = "yJ1vrI9+qzUHuQJxeRDLCDCMRCIhF+0UNPwz3agyxTk=";
   };
   wireguard-network = {
     "roam" = {
@@ -14,6 +15,11 @@ rec {
     };
     "solo" = {
       publicKey = publicKey."solo";
+      ips = [ "10.10.11.2/24" ];
+      allowedIPs = [ "10.10.11.2/32" ];
+    };
+    "c2" = {
+      publicKey = publicKey."c2";
       ips = [ "10.10.11.2/24" ];
       allowedIPs = [ "10.10.11.2/32" ];
     };

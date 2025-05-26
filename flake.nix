@@ -7,6 +7,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-config-hidden = {
+      url = "git+ssh://git@github.com/henridoh/nixos-config-hidden";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,6 +20,7 @@
       nixos-hardware,
       colmena,
       home-manager,
+      nixos-config-hidden,
     }@inputs:
     let
       lib = nixpkgs.lib;
@@ -24,7 +29,7 @@
 
       specialArgs = {
         inherit inputs lib' mod;
-        var = (lib'.walk-dir ./var).map_import;
+        var = (lib'.walk-dir ./var).map_import_with_lib;
       };
       overlays = _: {
         nixpkgs.overlays = [ colmena.overlay ];
@@ -34,22 +39,28 @@
       nixosConfigurations = {
         "solo" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          inherit specialArgs;
+          specialArgs = specialArgs // {
+            host = "solo";
+          };
           modules = [
             ./host/solo
             mod.common.to_mod
             mod.pc-common.to_mod
+            nixos-config-hidden.nixosModules.pc
             overlays
           ];
         };
 
         "c2" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          inherit specialArgs;
+          specialArgs = specialArgs // {
+            host = "c2";
+          };
           modules = [
             ./host/c2
             mod.common.to_mod
             mod.pc-common.to_mod
+            nixos-config-hidden.nixosModules.pc
             overlays
           ];
         };

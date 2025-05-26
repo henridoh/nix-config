@@ -1,7 +1,6 @@
-{ ... }:
+{ var, lib, ... }:
 let
   wireguard-port = 51820;
-  wireguard-subnet = "100.10.11.0/24";
 in
 {
   networking = {
@@ -16,9 +15,10 @@ in
     wireguard = {
       enable = true;
       interfaces."wg0" = {
-        ips = [ wireguard-subnet ];
+        ips = var.wg.wireguard-network."roam".ips;
         listenPort = wireguard-port;
-        privateKeyFile = "/var/secrets/wg0.key";
+        privateKeyFile = var.wg.keyFile;
+        peers = var.wg.peers-for "roam";
       };
     };
   };

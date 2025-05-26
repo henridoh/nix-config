@@ -1,0 +1,29 @@
+{ lib, ... }:
+rec {
+  publicKey = {
+    "roam" = "yUbdRfRFFVe4FPUaD7pVByLRhpF9Yl1kethxRUHpVgs=";
+    "solo" = "SRDguh0aN/RH8q/uB09w/OZTbP9JZZy0ABowbWIfkTk=";
+  };
+  wireguard-network = {
+    "roam" = {
+      publicKey = publicKey."roam";
+      ips = [ "10.10.11.1/24" ];
+      allowedIPs = [ "10.10.11.0/24" ];
+      endpoint = "185.163.117.158:51820";
+      persistentKeepalive = 17;
+    };
+    "solo" = {
+      publicKey = publicKey."solo";
+      ips = [ "10.10.11.2/24" ];
+      allowedIPs = [ "10.10.11.2/32" ];
+    };
+  };
+  keyFile = "/var/secrets/wg.key";
+
+  peers-for =
+    host:
+    map (lib.filterAttrs (n: _: n != "ips")) (
+      lib.attrValues (lib.filterAttrs (n: _: n != host) wireguard-network)
+    );
+
+}

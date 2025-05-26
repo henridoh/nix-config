@@ -1,4 +1,4 @@
-rec {
+_: rec {
   # this is only used for forcing password entry on colmena apply
   priviliged-by-host = {
     "solo" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFsl8pLaGeCL3kacGWf8pzoLQr501ga/2OzvI2wWbTZJ";

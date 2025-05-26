@@ -13,6 +13,9 @@ switch: _switch_${HOST}
 apply:
 	colmena apply
 
+update-hidden:
+	nix flake update nixos-config-hidden
+
 _switch_:
 	@echo "ERROR: couldn't find hostname"
 	@false

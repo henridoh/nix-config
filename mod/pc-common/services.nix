@@ -9,5 +9,6 @@
     };
     udisks2.enable = true;
     emacs.enable = true;
+    protonmail-bridge.enable = true;
   };
 }

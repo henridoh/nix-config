@@ -28,10 +28,12 @@
     programs.thunderbird = {
       enable = true;
       package = pkgs.thunderbird-latest;
-      profiles.default.isDefault = true;
-      profiles.default.settings = {
-        "mail.openpgp.allow_external_gnupg" = true;
-        "mail.openpgp.fetch_pubkeys_from_gnupg" = true;
+      profiles.default = {
+        isDefault = true;
+        settings = {
+          "mail.openpgp.allow_external_gnupg" = true;
+          "mail.openpgp.fetch_pubkeys_from_gnupg" = true;
+        };
       };
     };
   };

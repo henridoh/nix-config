@@ -60,11 +60,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747559278,
-        "narHash": "sha256-10VfcILI2zYY1/ZlOx/cakDmpJgSEJYEG3gMrjzFREY=",
+        "lastModified": 1748227609,
+        "narHash": "sha256-SaSdslyo6UGDpPUlmrPA4dWOEuxCy2ihRN9K6BnqYsA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ee85cfc5c132e2cf956a7b5ab156ddaedaefcbbc",
+        "rev": "d23d20f55d49d8818ac1f1b2783671e8a6725022",
         "type": "github"
       },
       "original": {
@@ -94,13 +94,33 @@
         "type": "github"
       }
     },
+    "nixos-config-hidden": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1748288309,
+        "narHash": "sha256-eME8v0XnFUx1okq1mmdBEVV2lgCEVaHRKMl8nzrOrlM=",
+        "ref": "refs/heads/main",
+        "rev": "c5c6cb7b0b721ba5dc45788e5d6f154cb8a91dc3",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/henridoh/nixos-config-hidden"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/henridoh/nixos-config-hidden"
+      }
+    },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1747129300,
-        "narHash": "sha256-L3clA5YGeYCF47ghsI7Tcex+DnaaN/BbQ4dR2wzoiKg=",
+        "lastModified": 1747900541,
+        "narHash": "sha256-dn64Pg9xLETjblwZs9Euu/SsjW80pd6lr5qSiyLY1pg=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "e81fd167b33121269149c57806599045fd33eeed",
+        "rev": "11f2d9ea49c3e964315215d6baa73a8d42672f06",
         "type": "github"
       },
       "original": {
@@ -128,11 +148,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1747327360,
-        "narHash": "sha256-LSmTbiq/nqZR9B2t4MRnWG7cb0KVNU70dB7RT4+wYK4=",
+        "lastModified": 1748190013,
+        "narHash": "sha256-R5HJFflOfsP5FBtk+zE8FpL8uqE7n62jqOsADvVshhE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e06158e58f3adee28b139e9c2bcfcc41f8625b46",
+        "rev": "62b852f6c6742134ade1abdd2a21685fd617a291",
         "type": "github"
       },
       "original": {
@@ -146,6 +166,7 @@
       "inputs": {
         "colmena": "colmena",
         "home-manager": "home-manager",
+        "nixos-config-hidden": "nixos-config-hidden",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2"
       }

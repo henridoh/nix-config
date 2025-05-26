@@ -1,4 +1,4 @@
-{ ... }:
+{ host, var, ... }:
 {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -11,6 +11,46 @@
 
   networking = {
     enableIPv6 = true;
+
+    wireguard.enable = true;
+    wg-quick = {
+      interfaces = {
+        "onet" = {
+          address = var.wg.wireguard-network.${host}.ips;
+          privateKeyFile = var.wg.keyFile;
+          peers = var.wg.peers-for host;
+        };
+        "mullvad" =
+          let
+            conf = {
+              "solo".ips = [
+                "10.68.140.249/32"
+                "fc00:bbbb:bbbb:bb01::5:8cf8/128"
+              ];
+            };
+          in
+          {
+            address = conf.${host}.ips;
+            privateKeyFile = var.wg.keyFile;
+            peers = [
+              {
+                allowedIPs = [
+                  "0.0.0.0/0"
+                  "::0/0"
+                ];
+                endpoint = "185.213.155.72:51820";
+                publicKey = "flq7zR8W5FxouHBuZoTRHY0A0qFEMQZF5uAgV4+sHVw=";
+                persistentKeepalive = 23;
+              }
+            ];
+          };
+      };
+    };
+
+    firewall = {
+      allowedUDPPorts = [ 51820 ];
+    };
+
     networkmanager = {
       enable = true;
       wifi.macAddress = "random";

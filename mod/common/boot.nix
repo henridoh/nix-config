@@ -16,5 +16,7 @@
 
     kernelPackages = pkgs.linuxPackages_6_13;
     kernel.sysctl."kernel.sysrq" = 1;
+
+    initrd.systemd.network.wait-online.enable = false;
   };
 }

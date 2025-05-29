@@ -6,15 +6,28 @@
 }:
 {
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.network.wait-online.enable = false;
 
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
+  services = {
+    tailscale = {
+      enable = true;
+      useRoutingFeatures = "client";
+    };
+    mullvad-vpn.enable = true;
+    blueman.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "true";
+      dnsovertls = "true";
+      fallbackDns = [ ];
+    };
   };
 
   networking = {
+    nameservers = [
+      "1.1.1.1#one.one.one.one"
+      "1.0.0.1#one.one.one.one"
+    ];
     enableIPv6 = true;
 
     wireguard.enable = true;
@@ -25,34 +38,6 @@
           privateKeyFile = var.wg.keyFile;
           peers = [ (lib.removeAttrs var.wg.wireguard-network."roam" [ "ips" ]) ];
         };
-        "mullvad" =
-          let
-            conf = {
-              "solo".ips = [
-                "10.68.140.249/32"
-                "fc00:bbbb:bbbb:bb01::5:8cf8/128"
-              ];
-              "c2".ips = [
-                "10.64.179.105/32"
-                "fc00:bbbb:bbbb:bb01::1:b368/128"
-              ];
-            };
-          in
-          {
-            address = conf.${host}.ips;
-            privateKeyFile = var.wg.keyFile;
-            peers = [
-              {
-                allowedIPs = [
-                  "0.0.0.0/0"
-                  "::0/0"
-                ];
-                endpoint = "185.213.155.72:51820";
-                publicKey = "flq7zR8W5FxouHBuZoTRHY0A0qFEMQZF5uAgV4+sHVw=";
-                persistentKeepalive = 23;
-              }
-            ];
-          };
       };
     };
 

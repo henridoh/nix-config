@@ -19,6 +19,7 @@
     wget
     wl-clipboard
     colmena
+    unison
   ];
 
   programs = {

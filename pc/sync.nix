@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home.services.unison = {
+  home.services.unison' = {
     enable = true;
     pairs = {
       "docs".roots = [

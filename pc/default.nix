@@ -1,0 +1,21 @@
+{
+  inputs,
+  lib,
+  config,
+  ...
+}:
+{
+  imports = [
+    ./audio.nix
+    ./fonts.nix
+    ./gpg.nix
+    ./home-manager.nix
+    ./network.nix
+    ./nix.nix
+    ./security.nix
+    ./services.nix
+    ./software
+    ./sync.nix
+    inputs.nixos-config-hidden.nixosModules.pc
+  ];
+}

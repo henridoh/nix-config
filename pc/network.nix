@@ -9,10 +9,6 @@
   systemd.network.wait-online.enable = false;
 
   services = {
-    tailscale = {
-      enable = true;
-      useRoutingFeatures = "client";
-    };
     mullvad-vpn.enable = true;
     blueman.enable = true;
     resolved = {
@@ -39,10 +35,6 @@
           peers = [ (lib.removeAttrs var.wg.wireguard-network."roam" [ "ips" ]) ];
         };
       };
-    };
-
-    firewall = {
-      allowedUDPPorts = [ 51820 ];
     };
 
     networkmanager = {

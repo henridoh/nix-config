@@ -6,6 +6,12 @@
   ...
 }:
 {
+  options.home = lib.mkOption {
+    type = lib.types.attrsOf lib.types.str;
+    default = { };
+    description = "home-manager configuration.";
+  };
+
   imports = [
     inputs.home-manager.nixosModules.home-manager
     {
@@ -19,12 +25,5 @@
 
   config = {
     home.home.stateVersion = config.system.stateVersion;
-  };
-
-  options = {
-    home = lib.mkOption {
-      type = lib.types.attrs;
-      default = { };
-    };
   };
 }

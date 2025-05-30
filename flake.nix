@@ -25,10 +25,9 @@
     let
       lib = nixpkgs.lib;
       lib' = import ./lib.nix { inherit lib; };
-      mod = lib'.walk-dir ./mod;
 
       specialArgs = {
-        inherit inputs lib' mod;
+        inherit inputs lib';
         var = (lib'.walk-dir ./var).map_import_with_lib;
       };
       overlays = _: {
@@ -44,9 +43,8 @@
           };
           modules = [
             ./host/solo
-            mod.common.to_mod
-            mod.pc-common.to_mod
-            nixos-config-hidden.nixosModules.pc
+            ./host
+            ./mod
             overlays
           ];
         };
@@ -58,9 +56,8 @@
           };
           modules = [
             ./host/c2
-            mod.common.to_mod
-            mod.pc-common.to_mod
-            nixos-config-hidden.nixosModules.pc
+            ./host
+            ./mod
             overlays
           ];
         };
@@ -80,7 +77,8 @@
           };
           imports = [
             ./host/roam
-            mod.common.to_mod
+            ./host
+            ./mod
             overlays
           ];
         };

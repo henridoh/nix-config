@@ -1,11 +1,14 @@
 { lib', ... }:
-let
-  submodules = lib'.walk-dir ./.;
-in
 {
   networking.hostName = "roam";
 
-  imports = [ submodules.to_mod_without_default ];
+  imports = [
+    ./hardware-configuration.nix
+    ./networking.nix
+    ./secruity.nix
+    ./services.nix
+    ./wireguard.nix
+  ];
 
   # ====== DON'T CHANGE ======
   system.stateVersion = "24.11";

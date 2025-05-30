@@ -7,6 +7,7 @@
     common-cpu-intel
     common-pc-laptop
     common-pc-laptop-ssd
+    ../../pc
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";

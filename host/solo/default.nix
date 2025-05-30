@@ -1,11 +1,13 @@
-{ lib', ... }:
-let
-  submodules = lib'.walk-dir ./.;
-in
+{ ... }:
 {
   networking.hostName = "solo";
 
-  imports = [ submodules.to_mod_without_default ];
+  imports = [
+    ./hardware-configuration.nix
+    ./keyboard.nix
+    ./nvidia-gpu.nix
+    ../../pc
+  ];
 
   powerManagement = {
     enable = true;

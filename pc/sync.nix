@@ -2,7 +2,6 @@
 {
   home.services.unison = {
     enable = true;
-    package = pkgs.unison;
     pairs = {
       "docs".roots = [
         "/home/hd/Documents"

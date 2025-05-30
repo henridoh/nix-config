@@ -1,7 +1,4 @@
 { ... }:
 {
   imports = [ ];
-  home = {
-    imports = [ ./hm ];
-  };
 }

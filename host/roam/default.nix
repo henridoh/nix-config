@@ -5,7 +5,7 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./secruity.nix
+    ./security.nix
     ./services.nix
     ./wireguard.nix
   ];

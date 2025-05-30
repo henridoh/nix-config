@@ -24,6 +24,9 @@
   ];
 
   config = {
-    home.home.stateVersion = config.system.stateVersion;
+    home = {
+      home.stateVersion = config.system.stateVersion;
+      imports = [ ../mod-hm ];
+    };
   };
 }

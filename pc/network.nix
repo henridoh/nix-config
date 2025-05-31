@@ -12,18 +12,12 @@
     mullvad-vpn.enable = true;
     blueman.enable = true;
     resolved = {
+      # TODO: find out why doh breaks moodle...
       enable = true;
-      dnssec = "true";
-      dnsovertls = "true";
-      fallbackDns = [ ];
     };
   };
 
   networking = {
-    nameservers = [
-      "1.1.1.1#one.one.one.one"
-      "1.0.0.1#one.one.one.one"
-    ];
     enableIPv6 = true;
 
     wireguard.enable = true;

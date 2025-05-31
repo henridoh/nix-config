@@ -8,7 +8,7 @@ let
   }) var.wg.ips;
 in
 rec {
-  hostsFile = lib.concatStringsSep "\n" (lib.mapAttrsFlatten (n: v: "${n}\t${v}") hosts);
+  hostsFile = lib.concatStringsSep "\n" (lib.mapAttrsFlatten (n: v: "${v}\t${n}") hosts);
   hosts =
     lan-hosts
     // lib.mapAttrs' (name: value: {

@@ -1,19 +1,19 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    signal-desktop
-    element-desktop
-    zulip
-    vesktop
-    wireguard-tools
     bitwarden
+    calibre
+    element-desktop
     kitty
     nil
-    vlc
-    spotify
-    calibre
-    zotero
     obsidian
+    signal-desktop
+    spotify
+    vesktop
+    vlc
+    wireguard-tools
+    zotero
+    zulip
   ];
 
   virtualisation = {
@@ -30,10 +30,7 @@
       package = pkgs.thunderbird-latest;
       profiles.default = {
         isDefault = true;
-        settings = {
-          "mail.openpgp.allow_external_gnupg" = true;
-          "mail.openpgp.fetch_pubkeys_from_gnupg" = true;
-        };
+        withExternalGnupg = true;
       };
     };
   };

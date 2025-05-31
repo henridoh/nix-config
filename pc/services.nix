@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     printing.enable = true;
@@ -9,6 +9,13 @@
     };
     udisks2.enable = true;
     emacs.enable = true;
-    protonmail-bridge.enable = true;
+  };
+
+  home.services.protonmail-bridge = {
+    enable = true;
+    path = with pkgs; [
+      pass
+      gnome-keyring
+    ];
   };
 }

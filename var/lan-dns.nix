@@ -1,0 +1,18 @@
+{ lib, var, ... }:
+let
+  lan-tld = ".lan";
+  lan-base-domain = ".hdohmen.de";
+  lan-hosts = lib.mapAttrs' (name: value: {
+    name = "${name}${lan-tld}";
+    inherit value;
+  }) var.wg.ips;
+in
+rec {
+  hostsFile = lib.concatStringsSep "\n" (lib.mapAttrsFlatten (n: v: "${n}\t${v}") hosts);
+  hosts =
+    lan-hosts
+    // lib.mapAttrs' (name: value: {
+      name = "${name}${lan-base-domain}";
+      inherit value;
+    }) lan-hosts;
+}

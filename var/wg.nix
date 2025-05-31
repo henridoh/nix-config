@@ -32,4 +32,7 @@ rec {
       lib.attrValues (lib.filterAttrs (n: _: n != host) wireguard-network)
     );
 
+  ips =
+    with builtins;
+    mapAttrs (name: value: head (lib.splitString "/" (head value.ips))) wireguard-network;
 }

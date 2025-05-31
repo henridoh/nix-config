@@ -26,9 +26,9 @@
       lib = nixpkgs.lib;
       lib' = import ./lib.nix { inherit lib; };
 
-      specialArgs = {
+      specialArgs = rec {
         inherit inputs lib';
-        var = (lib'.walk-dir ./var).map_import_with_lib;
+        var = (lib'.walk-dir ./var)._map (f: import f { inherit lib var; });
       };
       overlays = _: {
         nixpkgs.overlays = [ colmena.overlay ];

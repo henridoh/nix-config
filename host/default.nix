@@ -1,4 +1,4 @@
-{ ... }:
+{ var, ... }:
 {
   imports = [
     ./boot.nix
@@ -7,4 +7,6 @@
     ./shell.nix
     ./users.nix
   ];
+
+  networking.extraHosts = var.lan-dns.hostsFile;
 }

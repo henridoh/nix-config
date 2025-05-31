@@ -101,11 +101,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748686273,
-        "narHash": "sha256-B5AcG50rt8VAFC89ssl2SeRPK4rVFdQ7aYUOpQ0uqiU=",
+        "lastModified": 1748726222,
+        "narHash": "sha256-MPhNInJtfk5gm1NOqoo5+M/L8jRikRqhUhdXH8IIUpA=",
         "ref": "refs/heads/main",
-        "rev": "cdb9d99624e83f049b714a6469a5c188fbbdd912",
-        "revCount": 3,
+        "rev": "f1246d892acab2e3fcf533d669c0f6033fb72d9d",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/henridoh/nixos-config-hidden"
       },

@@ -44,7 +44,7 @@ in
         Description = "protonmail bridge";
       };
       Install = {
-        wantedBy = [ "graphical-session.target" ];
+        WantedBy = [ "graphical-session.target" ];
       };
       Service =
         let
@@ -53,9 +53,7 @@ in
         {
           ExecStart = "${lib.getExe cfg.package} --noninteractive ${logLevel}";
           Restart = "always";
-          RestartSec = "2s";
           Environment = [ "PATH=${lib.makeBinPath (cfg.path ++ [ cfg.package ])}" ];
-          path = cfg.path;
         };
     };
   };

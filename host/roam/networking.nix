@@ -1,4 +1,8 @@
-{ ... }:
+{ var, ... }:
+let
+  wireguard-port = 51820;
+in
+
 {
   networking = {
     enableIPv6 = true;
@@ -16,10 +20,25 @@
       address = "fe80::1";
       interface = "ens3";
     };
+
+    nat = {
+      enable = true;
+      externalInterface = "ens3";
+      internalInterfaces = [ "wg0" ];
+    };
+
+    firewall.allowedUDPPorts = [ wireguard-port ];
+
+    wireguard = {
+      enable = true;
+      interfaces."wg0" = {
+        ips = var.wg.wireguard-network."roam".ips;
+        listenPort = wireguard-port;
+        privateKeyFile = var.wg.keyFile;
+        peers = var.wg.peers-for "roam";
+      };
+    };
+
   };
 
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-  };
 }

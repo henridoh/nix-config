@@ -7,7 +7,6 @@
     ./networking.nix
     ./security.nix
     ./services.nix
-    ./wireguard.nix
   ];
 
   # ====== DON'T CHANGE ======

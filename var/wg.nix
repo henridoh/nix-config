@@ -15,13 +15,15 @@ rec {
     };
     "solo" = {
       publicKey = publicKey."solo";
-      ips = [ "10.10.11.2/24" ];
+      ips = [ "10.10.11.2/32" ];
       allowedIPs = [ "10.10.11.2/32" ];
+      persistentKeepalive = 13;
     };
     "c2" = {
       publicKey = publicKey."c2";
-      ips = [ "10.10.11.3/24" ];
+      ips = [ "10.10.11.3/32" ];
       allowedIPs = [ "10.10.11.3/32" ];
+      persistentKeepalive = 19;
     };
   };
   keyFile = "/var/secrets/wg.key";

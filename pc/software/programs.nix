@@ -22,6 +22,7 @@
 
   programs = {
     firefox.enable = true;
+    kdeconnect.enable = true;
   };
 
   home = {

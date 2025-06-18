@@ -20,6 +20,7 @@
     wl-clipboard
     colmena
     unison
+    dnsutils
   ];
 
   programs = {

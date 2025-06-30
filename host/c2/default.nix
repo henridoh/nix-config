@@ -7,7 +7,6 @@
     common-cpu-intel
     common-pc-laptop
     common-pc-laptop-ssd
-    ../../pc
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -16,6 +15,8 @@
     enable = true;
     cpuFreqGovernor = "ondemand";
   };
+
+  desktop.enable = true;
 
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";

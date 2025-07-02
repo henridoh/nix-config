@@ -15,9 +15,10 @@ in
     ./fonts.nix
     ./gpg.nix
     ./network.nix
+    ./security.nix
     ./services.nix
-    ./window-manager.nix
     ./software
+    ./window-manager.nix
     inputs.nixos-config-hidden.nixosModules.pc
     inputs.home-manager.nixosModules.home-manager
     {
@@ -45,6 +46,7 @@ in
       fonts.enable = true;
       gpg.enable = true;
       network.enable = true;
+      security.enable = true;
       services.enable = true;
       software.enable = true;
       wm.enable = true;
@@ -70,7 +72,5 @@ in
       home.stateVersion = config.system.stateVersion;
       imports = [ ../../mod-hm ];
     };
-
-    security.protectKernelImage = true;
   };
 }

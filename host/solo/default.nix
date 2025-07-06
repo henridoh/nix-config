@@ -15,6 +15,9 @@
 
   desktop.enable = true;
 
+  networking.useDHCP = false;
+  networking.interfaces.enp4s0.useDHCP = true;
+
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";
 }

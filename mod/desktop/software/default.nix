@@ -26,7 +26,7 @@ in
       signal-desktop
       spotify
       tor-browser
-      vesktop
+      # vesktop
       vlc
       wireguard-tools
       zotero

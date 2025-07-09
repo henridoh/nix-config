@@ -20,15 +20,6 @@ in
     ./software
     ./window-manager.nix
     inputs.nixos-config-hidden.nixosModules.pc
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager.users."hd" = lib.mkAliasDefinitions options.home;
-      # install to /etc/profiles, not ~/.nix-profile
-      home-manager.useUserPackages = true;
-      # dont use home.nixpkgs
-      home-manager.useGlobalPkgs = true;
-    }
-
   ];
 
   options = {
@@ -67,10 +58,5 @@ in
       ];
 
     programs.nix-ld.enable = true;
-
-    home = {
-      home.stateVersion = config.system.stateVersion;
-      imports = [ ../../mod-hm ];
-    };
   };
 }

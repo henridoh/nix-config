@@ -10,6 +10,7 @@
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.resumeDevice = "/dev/disk/by-label/nixswap";
 
   powerManagement = {
     enable = true;

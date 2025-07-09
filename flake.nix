@@ -45,6 +45,7 @@
             ./host/solo
             ./host
             ./mod
+            ./mod-hm
             overlays
           ];
         };
@@ -58,6 +59,7 @@
             ./host/c2
             ./host
             ./mod
+            ./mod-hm
             overlays
           ];
         };

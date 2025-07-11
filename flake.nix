@@ -11,16 +11,18 @@
       url = "git+ssh://git@github.com/henridoh/nixos-config-hidden";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     {
       self,
-      nixpkgs,
-      nixos-hardware,
       colmena,
+      flake-utils,
       home-manager,
       nixos-config-hidden,
+      nixos-hardware,
+      nixpkgs,
     }@inputs:
     let
       lib = nixpkgs.lib;
@@ -85,7 +87,17 @@
           ];
         };
       };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
-    };
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        devShells.withColmena = pkgs.mkShell {
+          buildInputs = [ colmena.packages.${system}.colmena ];
+        };
+        formatter = pkgs.nixfmt-tree;
+      }
+    );
 }

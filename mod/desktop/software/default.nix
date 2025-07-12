@@ -17,16 +17,17 @@ in
     desktop.software.development.enable = true;
 
     environment.systemPackages = with pkgs; [
+      # vesktop
       bitwarden
       calibre
       element-desktop
       kitty
       nil
       obsidian
+      rclone
       signal-desktop
       spotify
       tor-browser
-      # vesktop
       vlc
       wireguard-tools
       zotero

@@ -1,11 +1,17 @@
 {
-  pkgs,
+  config,
   lib,
   options,
+  pkgs,
+  secrets,
   var,
   ...
 }:
 {
+  age.secrets.hd-password = {
+    file = secrets."hd-password.age";
+  };
+
   users = {
     mutableUsers = false;
     users."hd" = {
@@ -16,12 +22,12 @@
       extraGroups = [ "wheel" ];
       shell = pkgs.fish;
       packages = [ ];
-      openssh.authorizedKeys.keys = var.ssh-keys.unprivileged;
-      hashedPassword = "$y$jDT$dhvO.xqs8mopz.sFFul.q/$ud5642o7CnVetU6QEu0ctiVMFh7ngZznDf0wp4cXos8";
+      openssh.authorizedKeys.keys = var.ssh-keys.hd;
+      hashedPasswordFile = config.age.secrets.hd-password.path;
     };
     users.root = {
       hashedPassword = "!";
-      openssh.authorizedKeys.keys = var.ssh-keys.priviliged;
+      openssh.authorizedKeys.keys = var.ssh-keys.root;
     };
   };
 }

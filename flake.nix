@@ -12,11 +12,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.darwin.follows = "";
+    };
   };
 
   outputs =
     {
       self,
+      agenix,
       colmena,
       flake-utils,
       home-manager,
@@ -31,6 +37,7 @@
       specialArgs = rec {
         inherit inputs lib';
         var = (lib'.walk-dir ./var)._map (f: import f { inherit lib var; });
+        secrets = lib'.walk-dir ./secrets;
       };
       overlays = _: {
         nixpkgs.overlays = [ colmena.overlay ];
@@ -91,8 +98,11 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        devShells.withColmena = pkgs.mkShell {
-          buildInputs = [ colmena.packages.${system}.colmena ];
+        devShells.default = pkgs.mkShell {
+          buildInputs = [
+            colmena.packages.${system}.colmena
+            agenix.packages.${system}.default
+          ];
         };
         formatter = pkgs.nixfmt-tree;
       }

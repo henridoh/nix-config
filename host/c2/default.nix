@@ -2,6 +2,10 @@
 {
   networking.hostName = "c2";
 
+  age.identityPaths = [
+    "/root/.ssh/id_ed25519"
+  ];
+
   imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
     common-cpu-intel

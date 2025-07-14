@@ -8,6 +8,6 @@
     createHome = true;
     group = "git";
     shell = "${pkgs.git}/bin/git-shell";
-    openssh.authorizedKeys.keys = var.ssh-keys.unprivileged;
+    openssh.authorizedKeys.keys = var.ssh-keys.hd;
   };
 }

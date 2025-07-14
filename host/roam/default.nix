@@ -2,7 +2,12 @@
 {
   networking.hostName = "roam";
 
+  age.identityPaths = [
+    "/root/.ssh/id_ed25519"
+  ];
+
   imports = [
+    ./backup.nix
     ./git.nix
     ./hardware-configuration.nix
     ./networking.nix

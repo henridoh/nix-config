@@ -2,6 +2,10 @@
 {
   networking.hostName = "solo";
 
+  age.identityPaths = [
+    "/root/.ssh/id_ed25519"
+  ];
+
   imports = [
     ./hardware-configuration.nix
     ./keyboard.nix

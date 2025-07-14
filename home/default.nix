@@ -12,11 +12,13 @@
   ];
 
   config = lib.mkIf config.hd.desktop.enable {
-    home-manager.users."hd" = lib.mkAliasDefinitions options.home;
-    # install to /etc/profiles, not ~/.nix-profile
-    home-manager.useUserPackages = true;
-    # dont use home.nixpkgs
-    home-manager.useGlobalPkgs = true;
+    home-manager = {
+      users."hd" = lib.mkAliasDefinitions options.home;
+      # install to /etc/profiles, not ~/.nix-profile
+      useUserPackages = true;
+      # dont use home.nixpkgs
+      useGlobalPkgs = true;
+    };
 
     home = {
       imports = [

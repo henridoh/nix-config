@@ -1,6 +1,15 @@
 { ... }:
 {
-  networking.hostName = "solo";
+  networking = {
+    hostName = "solo";
+
+    useDHCP = false;
+    interfaces.enp4s0.useDHCP = true;
+
+    firewall = {
+      enable = true;
+    };
+  };
 
   age.identityPaths = [
     "/root/.ssh/id_ed25519"
@@ -18,13 +27,6 @@
   };
 
   hd.desktop.enable = true;
-
-  networking.useDHCP = false;
-  networking.interfaces.enp4s0.useDHCP = true;
-
-  networking.firewall = {
-    enable = true;
-  };
 
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";

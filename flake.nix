@@ -31,7 +31,7 @@
       nixpkgs,
     }@inputs:
     let
-      lib = nixpkgs.lib;
+      inherit (nixpkgs) lib;
       lib' = import ./lib.nix { inherit lib; };
 
       specialArgs = rec {

@@ -1,7 +1,7 @@
 let
   keys =
     let
-      k = (import ./var/ssh-keys.nix { });
+      k = import ./var/ssh-keys.nix { };
     in
     k.root; # ++ k.hd;
   secrets = [

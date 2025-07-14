@@ -21,6 +21,12 @@
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
   # ====== DON'T CHANGE ======
   system.stateVersion = "24.11";
 }

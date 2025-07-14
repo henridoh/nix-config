@@ -10,10 +10,6 @@
       };
     };
 
-    # otherwise /tmp is on disk. This *may* be problematic as nix
-    # builds in /tmp but I think my swap is large enough...
-    tmp.useTmpfs = true;
-
     kernelPackages = pkgs.linuxPackages_6_12;
     kernel.sysctl."kernel.sysrq" = 1;
 

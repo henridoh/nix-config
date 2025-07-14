@@ -11,8 +11,6 @@ in
 {
   options.hd.desktop.security.enable = mkEnableOption "Security";
   config = mkIf cfg.enable {
-    security = {
-
-    };
+    security = { };
   };
 }

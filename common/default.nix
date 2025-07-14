@@ -11,5 +11,6 @@
     ./users.nix
   ];
 
+  environment.defaultPackages = [ ];
   networking.extraHosts = var.lan-dns.hostsFile;
 }

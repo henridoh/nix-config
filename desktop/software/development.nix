@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.software.development;
+  cfg = config.hd.desktop.software.development;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.software.development.enable = mkEnableOption "Dev Software";
+  options.hd.desktop.software.development.enable = mkEnableOption "Dev Software";
 
   config = mkIf cfg.enable {
     documentation.dev.enable = true;

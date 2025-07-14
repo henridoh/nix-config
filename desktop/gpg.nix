@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.gpg;
+  cfg = config.hd.desktop.gpg;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.gpg.enable = mkEnableOption "GPG";
+  options.hd.desktop.gpg.enable = mkEnableOption "GPG";
   config = mkIf cfg.enable {
     home = {
       home.packages = with pkgs; [

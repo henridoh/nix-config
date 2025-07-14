@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.desktop;
+  cfg = config.hd.desktop;
   inherit (lib) mkEnableOption mkIf;
 in
 {
@@ -23,7 +23,7 @@ in
   ];
 
   options = {
-    desktop.enable = mkEnableOption "Desktop Configuration";
+    hd.desktop.enable = mkEnableOption "Desktop Configuration";
     home = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
       default = { };
@@ -32,7 +32,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    desktop = {
+    hd.desktop = {
       audio.enable = true;
       fonts.enable = true;
       gpg.enable = true;

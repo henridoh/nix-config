@@ -11,7 +11,7 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  config = lib.mkIf config.desktop.enable {
+  config = lib.mkIf config.hd.desktop.enable {
     home-manager.users."hd" = lib.mkAliasDefinitions options.home;
     # install to /etc/profiles, not ~/.nix-profile
     home-manager.useUserPackages = true;

@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.fonts;
+  cfg = config.hd.desktop.fonts;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.fonts.enable = mkEnableOption "Fonts";
+  options.hd.desktop.fonts.enable = mkEnableOption "Fonts";
   config = mkIf cfg.enable {
     fonts = {
       packages = with pkgs; [

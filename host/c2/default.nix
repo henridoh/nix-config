@@ -17,7 +17,7 @@
     cpuFreqGovernor = "ondemand";
   };
 
-  desktop.enable = true;
+  hd.desktop.enable = true;
 
   nix = {
     buildMachines = [
@@ -41,6 +41,10 @@
     extraOptions = ''
       	  builders-use-substitutes = true
       	'';
+  };
+
+  networking.firewall = {
+    enable = true;
   };
 
   # ====== DON'T CHANGE ======

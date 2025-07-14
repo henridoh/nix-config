@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.desktop.network;
+  cfg = config.hd.desktop.network;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.network = {
+  options.hd.desktop.network = {
     enable = mkEnableOption "All Network Options";
   };
 

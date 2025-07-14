@@ -6,18 +6,13 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    bc
     docker-compose
     fd
-    gh
     htop
     killall
     ripgrep
-    starship
-    stow
     unzip
     wget
-    wl-clipboard
     colmena
     unison
     dnsutils
@@ -25,7 +20,6 @@
 
   programs = {
     fish.enable = true;
-    git.enable = true;
     tmux = {
       enable = true;
       clock24 = true;

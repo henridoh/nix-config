@@ -45,9 +45,8 @@
           };
           modules = [
             ./host/solo
-            ./host
-            ./mod
-            ./mod-hm
+            ./home
+            ./common
             overlays
           ];
         };
@@ -59,9 +58,8 @@
           };
           modules = [
             ./host/c2
-            ./host
-            ./mod
-            ./mod-hm
+            ./home
+            ./common
             overlays
           ];
         };
@@ -81,8 +79,7 @@
           };
           imports = [
             ./host/roam
-            ./host
-            ./mod
+            ./common
             overlays
           ];
         };

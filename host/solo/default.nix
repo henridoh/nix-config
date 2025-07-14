@@ -13,10 +13,14 @@
     cpuFreqGovernor = "performance";
   };
 
-  desktop.enable = true;
+  hd.desktop.enable = true;
 
   networking.useDHCP = false;
   networking.interfaces.enp4s0.useDHCP = true;
+
+  networking.firewall = {
+    enable = true;
+  };
 
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";

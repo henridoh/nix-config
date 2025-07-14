@@ -5,31 +5,35 @@
   ...
 }:
 let
-  cfg = config.desktop.software;
+  cfg = config.hd.desktop.software;
   inherit (lib) mkEnableOption mkIf;
 in
 {
   imports = [ ./development.nix ];
 
-  options.desktop.software.enable = mkEnableOption "Software";
+  options.hd.desktop.software.enable = mkEnableOption "Software";
 
   config = mkIf cfg.enable {
-    desktop.software.development.enable = true;
+    hd.desktop.software.development.enable = true;
 
     environment.systemPackages = with pkgs; [
       # vesktop
       bitwarden
       calibre
       element-desktop
+      gh
       kitty
       nil
       obsidian
       rclone
       signal-desktop
       spotify
+      starship
+      stow
       tor-browser
       vlc
       wireguard-tools
+      wl-clipboard
       zotero
       zulip
     ];
@@ -40,6 +44,7 @@ in
 
     programs = {
       firefox.enable = true;
+      git.enable = true;
       kdeconnect.enable = true;
     };
 

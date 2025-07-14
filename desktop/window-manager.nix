@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.wm;
+  cfg = config.hd.desktop.wm;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.wm.enable = mkEnableOption "Window Manager";
+  options.hd.desktop.wm.enable = mkEnableOption "Window Manager";
 
   config = mkIf cfg.enable {
     # Enable the KDE Plasma Desktop Environment.

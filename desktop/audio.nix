@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.audio;
+  cfg = config.hd.desktop.audio;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.audio.enable = mkEnableOption "Audio";
+  options.hd.desktop.audio.enable = mkEnableOption "Audio";
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [

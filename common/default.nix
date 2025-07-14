@@ -1,9 +1,12 @@
 { var, ... }:
 {
   imports = [
+    ../mod
+    ../desktop
     ./boot.nix
     ./locale.nix
     ./nix.nix
+    ./security.nix
     ./shell.nix
     ./users.nix
   ];

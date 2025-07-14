@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.desktop.services;
+  cfg = config.hd.desktop.services;
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.desktop.services.enable = mkEnableOption "Services";
+  options.hd.desktop.services.enable = mkEnableOption "Services";
 
   config = mkIf cfg.enable {
     services = {

@@ -2,6 +2,5 @@
 {
   imports = [
     ./nginx.nix
-    ./desktop
   ];
 }

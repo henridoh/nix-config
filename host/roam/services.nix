@@ -1,7 +1,9 @@
-{ var, config, ... }:
-let
-  headscale-domain = "headscale.hdohmen.de";
-in
+{
+  var,
+  config,
+  pkgs,
+  ...
+}:
 {
   services = {
     nginx = {
@@ -33,5 +35,27 @@ in
       80
       443
     ];
+  };
+
+  systemd = {
+    timers."backup-rclone" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+        Unit = "backup-rclone.service";
+      };
+    };
+    services."backup-rclone" = {
+      script = ''
+        ${pkgs.rclone}/bin/rclone copy /home/hd/Documents odc:Documents
+        ${pkgs.rclone}/bin/rclone copy /git odc:git
+      '';
+      path = [ pkgs.rclone ];
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
   };
 }

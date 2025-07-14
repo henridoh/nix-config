@@ -44,7 +44,6 @@ in
 
     programs = {
       firefox.enable = true;
-      git.enable = true;
       kdeconnect.enable = true;
     };
 
@@ -55,6 +54,30 @@ in
         profiles.default = {
           isDefault = true;
           withExternalGnupg = true;
+        };
+      };
+      programs.git = {
+        enable = true;
+        signing = {
+          signByDefault = true;
+          signer = "openpgp";
+          key = "AB79213B044674AE";
+        };
+        userName = "Henri Dohmen";
+        userEmail = "henridohmen@posteo.com";
+        extraConfig = {
+          color.ui = "auto";
+          column.ui = "auto";
+          branch.sort = "-committerdate";
+          alias = {
+            staash = "stash --all";
+          };
+          core = {
+            editor = "nvim";
+            autocrlf = "input";
+          };
+          init.defaultBranch = "main";
+          credential.helper = "libsecret";
         };
       };
     };

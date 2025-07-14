@@ -6,16 +6,16 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    colmena
+    dnsutils
     docker-compose
     fd
     htop
     killall
     ripgrep
+    unison
     unzip
     wget
-    colmena
-    unison
-    dnsutils
   ];
 
   programs = {

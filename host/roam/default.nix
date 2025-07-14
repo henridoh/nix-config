@@ -3,6 +3,7 @@
   networking.hostName = "roam";
 
   imports = [
+    ./git.nix
     ./hardware-configuration.nix
     ./networking.nix
     ./services.nix

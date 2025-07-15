@@ -42,12 +42,20 @@ in
       docker.enable = true;
     };
 
-    programs = {
-      firefox.enable = true;
-      kdeconnect.enable = true;
-    };
+    programs.kdeconnect.enable = true;
 
     home = {
+      programs.librewolf = {
+        enable = true;
+        settings = {
+          "identity.fxaccounts.enabled" = true;
+          "webgl.disabled" = false;
+          "privacy.resistFingerprinting" = false;
+          "privacy.clearOnShutdown.history" = false;
+          "privacy.clearOnShutdown.cookies" = false;
+          "network.cookie.lifetimePolicy" = 0;
+        };
+      };
       programs.thunderbird = {
         enable = true;
         package = pkgs.thunderbird-latest;

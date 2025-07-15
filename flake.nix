@@ -36,7 +36,7 @@
 
       specialArgs = rec {
         inherit inputs lib';
-        var = (lib'.walk-dir ./var)._map (f: import f { inherit lib var; });
+        var = import ./var { inherit lib; };
         secrets = lib'.walk-dir ./secrets;
       };
       overlays = _: {

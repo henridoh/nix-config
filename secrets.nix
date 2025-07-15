@@ -1,9 +1,7 @@
 let
-  keys =
-    let
-      k = import ./var/ssh-keys.nix { };
-    in
-    k.root; # ++ k.hd;
+  pkgs = import <nixpkgs> { };
+  inherit (pkgs) lib;
+  keys = (import ./var { inherit lib; }).ssh-keys.root;
   secrets = [
     "roam/rclone-conf"
     "hd-password"

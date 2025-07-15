@@ -80,6 +80,10 @@ in
           credential.helper = "libsecret";
         };
       };
+      programs.foot = {
+        enable = true;
+        server.enable = true;
+      };
     };
 
     # Some excludes

@@ -4,6 +4,7 @@ let
   keys = (import ./var { inherit lib; }).ssh-keys.root;
   secrets = [
     "roam/rclone-conf"
+    "roam/firefox-sync-secret"
     "hd-password"
   ];
 in

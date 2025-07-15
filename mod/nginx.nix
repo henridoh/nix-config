@@ -2,14 +2,15 @@
   lib,
   options,
   config,
+  var,
   ...
 }:
 with lib;
 {
-  options.services.nginx.virtualHostsPub = mkOption {
+  options.services.nginx.virtualHostsPriv = mkOption {
     type = options.services.nginx.virtualHosts.type;
     default = { };
-    description = "Declarative vhost config listening to ::0 and 0.0.0.0";
+    description = "Declarative vhost config listening on onet";
   };
 
   config = {
@@ -17,28 +18,13 @@ with lib;
       _: v:
       v
       // {
-        addSSL = true;
         listen = [
           {
-            addr = "0.0.0.0";
-            port = 443;
-            ssl = true;
-          }
-          {
-            addr = "0.0.0.0";
-            port = 80;
-          }
-          {
-            addr = "[::0]";
-            port = 443;
-            ssl = true;
-          }
-          {
-            addr = "[::0]";
+            addr = var.wg.ips.roam;
             port = 80;
           }
         ];
       }
-    ) config.services.nginx.virtualHostsPub;
+    ) config.services.nginx.virtualHostsPriv;
   };
 }

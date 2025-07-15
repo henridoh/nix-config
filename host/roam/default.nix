@@ -1,5 +1,4 @@
-{ lib', ... }:
-{
+_: {
   networking.hostName = "roam";
 
   age.identityPaths = [
@@ -8,6 +7,7 @@
 
   imports = [
     ./backup.nix
+    ./firefox-sync.nix
     ./git.nix
     ./hardware-configuration.nix
     ./networking.nix

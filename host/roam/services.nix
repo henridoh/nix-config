@@ -6,16 +6,16 @@
   services = {
     nginx = {
       enable = true;
-      defaultListen = [
-        {
-          addr = var.wg.ips.roam;
-          ssl = true;
-        }
-      ];
-      virtualHosts."roam.lan" = {
+      virtualHosts.default = {
+        serverName = "_";
+        default = true;
+        rejectSSL = true;
+        locations."/".return = "444";
+      };
+      virtualHostsPriv."roam.lan" = {
         locations."/" = { };
       };
-      virtualHostsPub."roam.hdohmen.de" = {
+      virtualHosts."roam.hdohmen.de" = {
         enableACME = true;
         locations."/" = { };
       };

@@ -49,6 +49,7 @@ in
         enable = true;
         settings = {
           "identity.fxaccounts.enabled" = true;
+          "identity.sync.tokenserver.uri" = "http://fx-sync.lan/1.0/sync/1.5";
           "webgl.disabled" = false;
           "privacy.resistFingerprinting" = false;
           "privacy.clearOnShutdown.history" = false;

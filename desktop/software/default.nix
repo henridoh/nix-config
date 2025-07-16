@@ -51,7 +51,7 @@ in
         enable = true;
         settings = {
           "identity.fxaccounts.enabled" = true;
-          "identity.sync.tokenserver.uri" = "http://fx-sync.lan/1.0/sync/1.5";
+          "identity.sync.tokenserver.uri" = "https://firefox-syncserver.roam.hdohmen.de/1.0/sync/1.5";
           "webgl.disabled" = false;
           "privacy.resistFingerprinting" = false;
           "privacy.clearOnShutdown.history" = false;
@@ -97,7 +97,6 @@ in
         settings = {
           main = {
             "font" = "monospace:size=11";
-            "dpi-aware" = "yes";
           };
         };
       };

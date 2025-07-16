@@ -19,14 +19,9 @@
     secrets = config.age.secrets.roam-firefox-sync-secret.path;
     singleNode = {
       enable = true;
-      hostname = "fx-sync.lan";
-      enableTLS = false;
-    };
-  };
-  services.nginx.virtualHostsPriv."fx-sync.lan" = {
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.firefox-syncserver.settings.port}";
-      recommendedProxySettings = true;
+      hostname = "firefox-syncserver.roam.hdohmen.de";
+      enableNginx = true;
+      enableTLS = true;
     };
   };
 }

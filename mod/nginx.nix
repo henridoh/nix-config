@@ -23,6 +23,13 @@ with lib;
             addr = var.wg.ips.roam;
             port = 80;
           }
+          /*
+            { TODO: Fix certs
+              addr = var.wg.ips.roam;
+              port = 443;
+              ssl = true;
+            }
+          */
         ];
       }
     ) config.services.nginx.virtualHostsPriv;

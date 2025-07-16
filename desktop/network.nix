@@ -38,6 +38,7 @@ in
             address = var.wg.wireguard-network.${host}.ips;
             privateKeyFile = var.wg.keyFile;
             peers = [ (lib.removeAttrs var.wg.wireguard-network."roam" [ "ips" ]) ];
+            mtu = 1248;
           };
         };
       };

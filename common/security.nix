@@ -27,17 +27,62 @@
       "net.ipv4.tcp_rfc1337" = 1;
 
       "net.ipv4.tcp_fastopen" = 3;
+
+      "kernel.kptr_restrict" = 2;
+      "randomize_kstack_offset" = "on";
+      "spec_store_bypass_disable" = "on";
     };
     # otherwise /tmp is on disk. This *may* be problematic as nix
     # builds in /tmp but I think my swap is large enough...
     tmp.useTmpfs = lib.mkDefault true;
     tmp.cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
+
+    kernelParams = [
+      "init_on_free=1" # zero freed pages
+      "page_alloc.shuffle=1"
+      "page_poison=1"
+      "slab_nomerge"
+      "slub_debug=FZ"
+      "vsyscall=none" # diable virtual syscalls
+    ];
+
+    blacklistedKernelModules = [
+      "ax25"
+      "netrom"
+      "rose"
+      "adfs"
+      "affs"
+      "bfs"
+      "befs"
+      "cramfs"
+      "efs"
+      "erofs"
+      "exofs"
+      "freevxfs"
+      "f2fs"
+      "hfs"
+      "hpfs"
+      "jfs"
+      "minix"
+      "nilfs2"
+      "ntfs"
+      "omfs"
+      "qnx4"
+      "qnx6"
+      "sysv"
+      "ufs"
+    ];
   };
 
   security = {
     protectKernelImage = true;
+    forcePageTableIsolation = true;
+
+    apparmor.enable = true;
+    apparmor.killUnconfinedConfinables = true;
 
     sudo.enable = false;
+
     doas = {
       enable = true;
       extraRules = [

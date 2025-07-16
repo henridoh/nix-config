@@ -7,11 +7,13 @@
 
   environment.systemPackages = with pkgs; [
     colmena
+    dive
     dnsutils
-    docker-compose
     fd
     htop
     killall
+    podman-compose
+    podman-tui
     ripgrep
     unison
     unzip

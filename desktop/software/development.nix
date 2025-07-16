@@ -32,6 +32,7 @@ in
     ];
 
     home = {
+      xdg.configFile."emacs/init.el".source = ../../dotfiles/emacs/init.el;
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium;

@@ -30,7 +30,6 @@ in
       rclone
       signal-desktop
       spotify-player
-      starship
       stow
       tor-browser
       vlc
@@ -51,6 +50,35 @@ in
     programs.kdeconnect.enable = true;
 
     home = {
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set -U fish_greeting
+          starship init fish | source
+        '';
+      };
+      programs.starship = {
+        enable = true;
+        enableFishIntegration = true;
+        settings = {
+          format = "[$username](green)@[$hostname](red)[\\[$directory\\]](cyan bold)$all";
+          username = {
+            show_always = true;
+            format = "$user";
+          };
+          hostname = {
+            ssh_only = false;
+            format = "$hostname";
+          };
+          directory.format = "$path";
+          character = {
+            format = "$symbol ";
+            success_symbol = "\\\$";
+            error_symbol = "[\\\$](red)";
+          };
+          git_branch.format = "[$symbol$branch(:$remote_branch)]($style)";
+        };
+      };
       programs.librewolf = {
         enable = true;
         settings = {

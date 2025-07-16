@@ -18,6 +18,9 @@ in
       value.text =
         ''
           watch = true
+          auto = true
+          batch = true
+          sshargs = -C
           logfile = /dev/null
           confirmbigdeletes = true
           confirmmerge = true

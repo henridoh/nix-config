@@ -56,6 +56,8 @@ in
           "editor.formatOnPaste" = false;
           "editor.formatOnSave" = false;
           "editor.formatOnType" = false;
+          # https://github.com/nix-community/nix-vscode-extensions/issues/123
+          "ltex.ltex-ls.path" = "${pkgs.ltex-ls-plus}";
         };
       };
     };

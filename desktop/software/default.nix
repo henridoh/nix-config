@@ -61,7 +61,7 @@ in
         enable = true;
         enableFishIntegration = true;
         settings = {
-          format = "[$username](green)@[$hostname](red)[\\[$directory\\]](cyan bold)$all";
+          format = "[$username](green)@[$hostname](red)[\\[$directory\\]](cyan bold) $all";
           username = {
             show_always = true;
             format = "$user";

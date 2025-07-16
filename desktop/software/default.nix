@@ -17,17 +17,19 @@ in
     hd.desktop.software.development.enable = true;
 
     environment.systemPackages = with pkgs; [
+      # kitty
+      # niri
+      # obsidian
       # vesktop
       bitwarden
       calibre
       element-desktop
+      fuzzel
       gh
-      kitty
       nil
-      obsidian
       rclone
       signal-desktop
-      spotify
+      spotify-player
       starship
       stow
       tor-browser
@@ -92,6 +94,12 @@ in
       programs.foot = {
         enable = true;
         server.enable = true;
+        settings = {
+          main = {
+            "font" = "monospace:size=11";
+            "dpi-aware" = "yes";
+          };
+        };
       };
     };
 

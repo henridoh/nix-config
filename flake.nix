@@ -2,7 +2,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    colmena.url = "github:zhaofengli/colmena";
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
+    vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -29,6 +38,7 @@
       nixos-config-hidden,
       nixos-hardware,
       nixpkgs,
+      vscode-extensions,
     }@inputs:
     let
       inherit (nixpkgs) lib;
@@ -40,7 +50,10 @@
         secrets = lib'.walk-dir ./secrets;
       };
       overlays = _: {
-        nixpkgs.overlays = [ colmena.overlay ];
+        nixpkgs.overlays = [
+          vscode-extensions.overlays.default
+          colmena.overlay
+        ];
       };
     in
     {

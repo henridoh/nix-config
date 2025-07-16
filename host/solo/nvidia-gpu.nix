@@ -11,7 +11,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     open = false; # TODO: switch to open driver if it works again
 
-    nvidiaSettings = true;
+    nvidiaSettings = false;
     powerManagement = {
       enable = true;
       finegrained = false;

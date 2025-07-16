@@ -15,7 +15,6 @@ in
     documentation.dev.enable = true;
 
     environment.systemPackages = with pkgs; [
-      vscode
       binutils
       clang
       gcc
@@ -28,8 +27,37 @@ in
       python313Packages.mypy
       rustup
       emacs
-      jetbrains.gateway
-      jetbrains.rust-rover
+      # jetbrains.gateway
+      # jetbrains.rust-rover
     ];
+
+    home = {
+      programs.vscode = {
+        enable = true;
+        package = pkgs.vscodium;
+        mutableExtensionsDir = true;
+        profiles.default = {
+          enableExtensionUpdateCheck = true;
+          enableUpdateCheck = false;
+          extensions = with pkgs.vscode-marketplace; [
+            dnut.rewrap-revived
+            editorconfig.editorconfig
+            james-yu.latex-workshop
+            jnoortheen.nix-ide
+            ltex-plus.vscode-ltex-plus
+            maximedenes.vscoq
+            ms-python.python
+            ms-toolsai.jupyter
+            # ms-vscode-remote.remote-ssh
+          ];
+        };
+        userSettings = {
+          "editor.rulers" = [ 80 ];
+          "editor.formatOnPaste" = false;
+          "editor.formatOnSave" = false;
+          "editor.formatOnType" = false;
+        };
+      };
+    };
   };
 }

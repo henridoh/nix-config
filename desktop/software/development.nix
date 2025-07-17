@@ -47,6 +47,7 @@ in
             jnoortheen.nix-ide
             ltex-plus.vscode-ltex-plus
             maximedenes.vscoq
+            mkhl.direnv
             ms-python.python
             ms-toolsai.jupyter
             # ms-vscode-remote.remote-ssh
@@ -59,6 +60,7 @@ in
           "editor.formatOnType" = false;
           # https://github.com/nix-community/nix-vscode-extensions/issues/123
           "ltex.ltex-ls.path" = "${pkgs.ltex-ls-plus}";
+          "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
         };
       };
     };

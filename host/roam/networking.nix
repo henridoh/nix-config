@@ -24,7 +24,11 @@ in
     nat = {
       enable = true;
       externalInterface = "ens3";
-      internalInterfaces = [ "wg0" ];
+      internalInterfaces = [
+        "wg0"
+        "ve-+"
+      ];
+      enableIPv6 = true;
     };
 
     firewall.allowedUDPPorts = [ wireguard-port ];

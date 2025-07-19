@@ -7,6 +7,7 @@
 {
   services.mysql.package = pkgs.mariadb;
 
+  # TODO: containerize
   age.secrets.roam-firefox-sync-secret = {
     file = secrets.roam."firefox-sync-secret.age";
     mode = "440";

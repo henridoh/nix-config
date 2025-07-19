@@ -50,6 +50,7 @@ in
             mkhl.direnv
             ms-python.python
             ms-toolsai.jupyter
+            ocamllabs.ocaml-platform
             # ms-vscode-remote.remote-ssh
           ];
         };

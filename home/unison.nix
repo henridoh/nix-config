@@ -15,17 +15,16 @@ in
   config = lib.mkIf cfg.enable {
     home.file = lib.mapAttrs' (name: roots: {
       name = ".unison/${name}.prf";
-      value.text =
-        ''
-          watch = true
-          auto = true
-          batch = true
-          sshargs = -C
-          logfile = /dev/null
-          confirmbigdeletes = true
-          confirmmerge = true
-        ''
-        + lib.concatStringsSep "\n" (map (root: "root = ${root}") roots.roots);
+      value.text = ''
+        watch = true
+        auto = true
+        batch = true
+        sshargs = -C
+        logfile = /dev/null
+        confirmbigdeletes = true
+        confirmmerge = true
+      ''
+      + lib.concatStringsSep "\n" (map (root: "root = ${root}") roots.roots);
     }) cfg.pairs;
   };
 }

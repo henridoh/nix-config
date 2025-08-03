@@ -1,8 +1,9 @@
 {
-  host,
-  var,
   config,
+  host,
   lib,
+  pkgs,
+  var,
   ...
 }:
 let
@@ -45,6 +46,7 @@ in
 
       networkmanager = {
         enable = true;
+        plugins = with pkgs; [ networkmanager-openconnect ];
         wifi.macAddress = "random";
         ensureProfiles.profiles = {
           "tuda-vpn" = {

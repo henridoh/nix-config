@@ -97,6 +97,11 @@ in
         profiles.default = {
           isDefault = true;
           withExternalGnupg = true;
+          settings = {
+            "intl.date_time.pattern_override.date_short" = "yyyy-MM-dd";
+            "mail.html_compose" = false;
+            "mail.identity.default.compose_html" = false;
+          };
         };
       };
       programs.git = {

@@ -84,8 +84,6 @@ in
         settings = {
           "identity.fxaccounts.enabled" = true;
           "identity.sync.tokenserver.uri" = "https://firefox-syncserver.roam.hdohmen.de/1.0/sync/1.5";
-          "webgl.disabled" = false;
-          "network.cookie.lifetimePolicy" = 0;
         };
       };
       programs.thunderbird = {

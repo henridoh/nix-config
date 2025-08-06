@@ -86,7 +86,10 @@ in
           "identity.sync.tokenserver.uri" = "https://firefox-syncserver.roam.hdohmen.de/1.0/sync/1.5";
           "privacy.resistFingerprinting" = true;
           "signon.rememberSignons" = false;
-          "privacy.spoof_english" = 1;
+          "signon.autofillForms" = false;
+          "privacy.spoof_english" = 2;
+          "privacy.resistFingerprinting.block_mozAddonManager" = true;
+          "network.http.sendRefererHeader" = 1;
         };
       };
       programs.thunderbird = {

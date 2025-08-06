@@ -90,6 +90,8 @@ in
           "privacy.spoof_english" = 2;
           "privacy.resistFingerprinting.block_mozAddonManager" = true;
           "network.http.sendRefererHeader" = 1;
+          "intl.accept_languages" = "en,en-us";
+          "privacy.resistFingerprinting.letterboxing" = true;
         };
       };
       programs.thunderbird = {

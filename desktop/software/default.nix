@@ -32,12 +32,13 @@ in
       spotify-player
       stow
       tor-browser
+      usbutils
       vlc
       wireguard-tools
       wl-clipboard
+      yt-dlp
       zotero
       zulip
-      yt-dlp
     ];
 
     virtualisation = {

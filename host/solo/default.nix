@@ -28,6 +28,30 @@
 
   hd.desktop.enable = true;
 
+  nix = {
+    buildMachines = [
+      {
+        hostName = "noravm";
+        sshUser = "nixremote";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        maxJobs = 10;
+        speedFactor = 2;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
+    ];
+    distributedBuilds = true;
+    extraOptions = ''
+      	  builders-use-substitutes = true
+      	'';
+  };
+
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";
 }

@@ -30,7 +30,7 @@
         sshUser = "nixremote";
         system = "x86_64-linux";
         protocol = "ssh-ng";
-        maxJobs = 10;
+        maxJobs = 32;
         speedFactor = 2;
         supportedFeatures = [
           "nixos-test"

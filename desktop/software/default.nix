@@ -24,6 +24,7 @@ in
       bitwarden
       calibre
       element-desktop
+      file
       fuzzel
       gh
       nil

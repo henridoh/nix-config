@@ -61,6 +61,7 @@ in
             # https://github.com/nix-community/nix-vscode-extensions/issues/123
             "ltex.ltex-ls.path" = "${pkgs.ltex-ls-plus}";
             "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
+            "latex-workshop.latex.autoBuild.run" = "never";
           };
         };
       };

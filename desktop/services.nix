@@ -25,7 +25,7 @@ in
 
     home.services.protonmail-bridge = {
       enable = true;
-      path = with pkgs; [
+      extraPackages = with pkgs; [
         pass
         gnome-keyring
       ];

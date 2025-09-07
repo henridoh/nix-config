@@ -23,7 +23,6 @@
     home = {
       imports = [
         ./unison.nix
-        ./protonmail-bridge.nix
       ];
 
       home.stateVersion = config.system.stateVersion;

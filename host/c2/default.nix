@@ -16,6 +16,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.resumeDevice = "/dev/disk/by-label/nixswap";
 
+  # Fix for touchpad physical click not working
+  boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];
+
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "ondemand";

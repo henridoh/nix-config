@@ -42,7 +42,7 @@
       "page_alloc.shuffle=1"
       "page_poison=1"
       "slab_nomerge"
-      "slub_debug=FZ"
+      # "slub_debug=FZ" # disabled due to https://lore.kernel.org/all/20210601182202.3011020-5-swboyd@chromium.org/T/#u
       "vsyscall=none" # diable virtual syscalls
     ];
 

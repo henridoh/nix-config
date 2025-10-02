@@ -51,6 +51,7 @@ in
             ms-python.python
             ms-toolsai.jupyter
             ocamllabs.ocaml-platform
+            rust-lang.rust-analyzer
             # ms-vscode-remote.remote-ssh
           ];
           userSettings = {

@@ -1,13 +1,15 @@
 {
   var,
+  config,
+  secrets,
   ...
 }:
 {
   services = {
     nginx = {
-      recommendedTlsSettings = true;
-      recommendedProxySettings = true;
-      recommendedOptimisation = true;
+      # recommendedTlsSettings = true;
+      # recommendedProxySettings = true;
+      # recommendedOptimisation = true;
 
       enable = true;
       virtualHosts.default = {
@@ -16,11 +18,12 @@
         rejectSSL = true;
         locations."/".return = "444";
       };
-      virtualHostsPriv."roam.lan" = {
+      privateVirtualHosts."roam.lan" = {
         locations."/" = { };
       };
       virtualHosts."roam.hdohmen.de" = {
         enableACME = true;
+        forceSSL = true;
         locations."/" = { };
       };
     };

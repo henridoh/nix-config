@@ -1,0 +1,30 @@
+#!/bin/sh
+tmp=$(mktemp -d)
+trap 'rm -rf -- "$keyfile"' EXIT
+
+# ref https://stackoverflow.com/questions/59738140/why-is-firefox-not-trusting-my-self-signed-certificate
+openssl req -x509 -nodes \
+  -newkey RSA:2048 \
+  -keyout "$tmp/ca.key" \
+  -days 365 \
+  -out "$tmp/ca.cert" \
+  -subj '/CN=hd_root' \
+
+rm secrets/tlskey.age
+openssl req -nodes \
+  -newkey rsa:2048 \
+  -keyout - \
+  -out "$tmp/server.csr" \
+  -subj '/CN=lan' \
+  | agenix -e secrets/tlskey.age
+
+openssl x509 -req \
+  -CA "$tmp/ca.cert" \
+  -CAkey "$tmp/ca.key" \
+  -in "$tmp/server.csr" \
+  -out pki/server.cert \
+  -days 365 \
+  -CAcreateserial \
+  -extfile <(printf "subjectAltName=DNS:roam.lan,DNS:*.roam.lan\nauthorityKeyIdentifier=keyid,issuer\nbasicConstraints=CA:FALSE\nkeyUsage=digitalSignature,keyEncipherment\nextendedKeyUsage=serverAuth")
+
+mv "$tmp/ca.cert" pki/ca.cert

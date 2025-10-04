@@ -93,5 +93,7 @@
         }
       ];
     };
+
+    pki.certificateFiles = [ ../pki/ca.cert ];
   };
 }

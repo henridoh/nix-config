@@ -115,6 +115,7 @@
           buildInputs = [
             colmena.packages.${system}.colmena
             agenix.packages.${system}.default
+            pkgs.openssl
           ];
         };
         formatter = pkgs.nixfmt-tree;

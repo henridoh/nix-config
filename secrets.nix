@@ -6,6 +6,7 @@ let
     "roam/rclone-conf"
     "roam/firefox-sync-secret"
     "hd-password"
+    "tlskey"
   ];
 in
 builtins.foldl' (acc: x: acc // { "secrets/${x}.age".publicKeys = keys; }) { } secrets

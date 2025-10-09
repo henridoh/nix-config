@@ -1,5 +1,5 @@
 let
-  root = {
+  rootfs = {
     type = "btrfs";
     extraArgs = [
       "-f"
@@ -28,15 +28,6 @@ let
           "noatime"
         ];
       };
-    };
-  };
-
-  swap = {
-    size = "48G";
-    content = {
-      extraArgs = [ "-L nixswap" ];
-      type = "swap";
-      resumeDevice = true;
     };
   };
 in
@@ -82,7 +73,21 @@ in
     lvm_vg = {
       pool = {
         type = "lvm_vg";
-        lvs = { inherit root swap; };
+        lvs = {
+          root = {
+            size = "100%";
+            content = rootfs;
+          };
+          swap = {
+            size = "48G";
+            content = {
+              extraArgs = [ "-L nixswap" ];
+              type = "swap";
+              resumeDevice = true;
+            };
+          };
+
+        };
       };
     };
   };

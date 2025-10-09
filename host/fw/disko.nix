@@ -57,7 +57,7 @@ in
               label = "crypt";
               content = {
                 type = "luks";
-                name = "cryptroot";
+                name = "cryptlvm";
                 settings = {
                   keyFile = "/tmp/secret.key";
                   allowDiscards = true;

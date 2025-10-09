@@ -11,10 +11,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-config-hidden = {
-      url = "git+ssh://git@github.com/henridoh/nixos-config-hidden";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils.url = "github:numtide/flake-utils";
     agenix = {
       url = "github:ryantm/agenix";
@@ -35,7 +31,6 @@
       colmena,
       flake-utils,
       home-manager,
-      nixos-config-hidden,
       nixos-hardware,
       nixpkgs,
       vscode-extensions,

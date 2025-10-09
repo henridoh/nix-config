@@ -19,6 +19,16 @@ in
       ];
       programs.gpg = {
         enable = true;
+        publicKeys = [
+          {
+            source = ../pgp/id-priv.pgp;
+            trust = 5;
+          }
+          {
+            source = ../pgp/id-uni.pgp;
+            trust = 5;
+          }
+        ];
       };
       services.gpg-agent = {
         enable = true;

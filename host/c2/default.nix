@@ -8,7 +8,7 @@
 
   imports = with inputs.nixos-hardware.nixosModules; [
     ./hardware-configuration.nix
-    common-cpu-intel
+    # common-cpu-intel
     common-pc-laptop
     common-pc-laptop-ssd
   ];

@@ -11,6 +11,7 @@ let
 in
 {
   imports = [
+    ./accounts.nix
     ./audio.nix
     ./fonts.nix
     ./gpg.nix
@@ -19,7 +20,6 @@ in
     ./services.nix
     ./software
     ./window-manager.nix
-    inputs.nixos-config-hidden.nixosModules.pc
   ];
 
   options = {
@@ -33,6 +33,7 @@ in
 
   config = mkIf cfg.enable {
     hd.desktop = {
+      accounts.enable = true;
       audio.enable = true;
       fonts.enable = true;
       gpg.enable = true;

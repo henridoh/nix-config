@@ -42,6 +42,7 @@ in
           partitions = {
             ESP = {
               size = "512M";
+              label = "boot";
               name = "BOOT";
               type = "EF00";
               content = {
@@ -53,9 +54,9 @@ in
             };
             luks = {
               size = "100%";
+              label = "crypt";
               content = {
                 type = "luks";
-                label = "crypt";
                 settings = {
                   keyFile = "/tmp/secret.key";
                   allowDiscards = true;

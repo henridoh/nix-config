@@ -8,6 +8,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    (inputs.disko.nixosModules.disko ./disko.nix)
   ];
 
   boot.loader.efi.efiSysMountPoint = "/boot/efi";

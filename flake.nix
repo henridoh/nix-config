@@ -78,6 +78,19 @@
             overlays
           ];
         };
+
+        "fw" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs // {
+            host = "fw";
+          };
+          modules = [
+            ./host/fw
+            ./home
+            ./common
+            overlays
+          ];
+        };
       };
 
       colmenaHive = colmena.lib.makeHive {

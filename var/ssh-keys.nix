@@ -8,6 +8,7 @@ mkKeys {
     "solo" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEG+dd4m98aKEWfFa/7VZUlJNX0axvIlHVihT8w7RLyY";
     "c2" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIsoj2+esEebRwDV2PuNRt9Vz28oolOy+Hc2THwrWTAB";
     "roam" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEDlh8hY01wwmNtfa1eK3mVBIcytdh4n/kV05gP9z1Lc";
+    "fw" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJmxhDwylLlklpgiUWHc0BPSCkNkuAIrXLNOHpAcgXiL";
   };
   root = {
     "solo" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFsl8pLaGeCL3kacGWf8pzoLQr501ga/2OzvI2wWbTZJ";

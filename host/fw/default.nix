@@ -12,6 +12,8 @@
     ./disko.nix
   ];
 
+  hd.desktop.network.enable = false;
+
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;

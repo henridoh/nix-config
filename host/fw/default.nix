@@ -15,6 +15,7 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
+      grub.enable = true;
     };
 
     kernelPackages = pkgs.linuxPackages_6_12;

@@ -15,7 +15,11 @@
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;
-      grub.enable = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "/dev/nvme0n1";
+      };
     };
 
     kernelPackages = pkgs.linuxPackages_6_12;

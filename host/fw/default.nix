@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     ./disko.nix
+    inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
   ];
 
   boot = {

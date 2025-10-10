@@ -61,7 +61,6 @@ in
                 type = "luks";
                 name = "cryptlvm";
                 settings = {
-                  keyFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {

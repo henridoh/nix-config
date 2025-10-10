@@ -13,6 +13,9 @@
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
   ];
 
+  services.fprintd.enable = true;
+  # security.pam.enableFscrypt = true;
+
   boot = {
     loader = {
       efi.canTouchEfiVariables = true;

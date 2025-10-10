@@ -13,5 +13,6 @@ mkKeys {
     "solo" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFsl8pLaGeCL3kacGWf8pzoLQr501ga/2OzvI2wWbTZJ";
     "c2" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJAZaswaiA+oQ9NviADYFf7BJQHNlmdxQuocIdoJmv3o";
     "roam" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID++uLcQOx/to3sEo5Nk97CenGf0Y6/dMsBbLouVTgIQ";
+    "fw" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOjfPXDS3UvVGXzJYXU8TyP5q0WDzb0anx4Std40AT+j";
   };
 }

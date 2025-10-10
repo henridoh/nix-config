@@ -44,7 +44,7 @@ in
               size = "512M";
               label = "boot";
               name = "BOOT";
-              type = "EF00";
+              type = "EF02";
               content = {
                 type = "filesystem";
                 format = "vfat";

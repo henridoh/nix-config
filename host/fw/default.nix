@@ -1,18 +1,15 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
-  networking.hostName = "roam";
+  networking.hostName = "fw";
 
   age.identityPaths = [
     "/root/.ssh/id_ed25519"
   ];
 
   imports = [
-    ./backup.nix
-    ./firefox-sync.nix
-    ./git.nix
     ./hardware-configuration.nix
-    ./networking.nix
-    ./services.nix
+    inputs.disko.nixosModules.disko
+    ./disko.nix
   ];
 
   boot = {
@@ -21,28 +18,26 @@
       grub = {
         enable = true;
         efiSupport = true;
-        device = "nodev";
       };
     };
 
     kernelPackages = pkgs.linuxPackages_6_12;
+    kernel.sysctl."kernel.sysrq" = 1;
 
     initrd.systemd.network.wait-online.enable = false;
   };
 
-  security = {
-    acme = {
-      acceptTerms = true;
-      defaults.email = "acme@henri-dohmen.de";
-    };
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "ondemand";
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 15d";
+  hd.desktop.enable = true;
+
+  networking.firewall = {
+    enable = true;
   };
 
   # ====== DON'T CHANGE ======
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

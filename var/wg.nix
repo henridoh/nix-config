@@ -4,6 +4,7 @@ rec {
     "roam" = "yUbdRfRFFVe4FPUaD7pVByLRhpF9Yl1kethxRUHpVgs=";
     "solo" = "SRDguh0aN/RH8q/uB09w/OZTbP9JZZy0ABowbWIfkTk=";
     "c2" = "yJ1vrI9+qzUHuQJxeRDLCDCMRCIhF+0UNPwz3agyxTk=";
+    "fw" = "xpiJJMPhZEIEvNDBYRbnOsBeDCdKN1cHdYM95b9+rUY=";
   };
   wireguard-network = {
     "roam" = {
@@ -24,6 +25,12 @@ rec {
       ips = [ "10.10.11.3/32" ];
       allowedIPs = [ "10.10.11.3/32" ];
       persistentKeepalive = 19;
+    };
+    "fw" = {
+      publicKey = publicKey."fw";
+      ips = [ "10.10.11.4/32" ];
+      allowedIPs = [ "10.10.11.4/32" ];
+      persistentKeepalive = 23;
     };
   };
   keyFile = "/var/secrets/wg.key";

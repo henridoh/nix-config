@@ -22,6 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,6 +33,7 @@
       self,
       agenix,
       colmena,
+      disko,
       flake-utils,
       home-manager,
       nixos-hardware,
@@ -73,6 +78,19 @@
           };
           modules = [
             ./host/c2
+            ./home
+            ./common
+            overlays
+          ];
+        };
+
+        "fw" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs // {
+            host = "fw";
+          };
+          modules = [
+            ./host/fw
             ./home
             ./common
             overlays

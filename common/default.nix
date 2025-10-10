@@ -4,7 +4,6 @@
     inputs.agenix.nixosModules.default
     ../mod
     ../desktop
-    ./boot.nix
     ./locale.nix
     ./nix.nix
     ./security.nix

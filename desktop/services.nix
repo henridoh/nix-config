@@ -37,11 +37,11 @@ in
       pairs = {
         "docs".roots = [
           "/home/hd/Documents"
-          "ssh://roam//home/hd/Documents"
+          "ssh://roam.lan//home/hd/Documents"
         ];
         "desktop".roots = [
           "/home/hd/Desktop"
-          "ssh://roam//home/hd/Desktop"
+          "ssh://roam.lan//home/hd/Desktop"
         ];
       };
     };

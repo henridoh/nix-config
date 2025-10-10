@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     colmena = {
       url = "github:zhaofengli/colmena";
@@ -38,14 +39,16 @@
       home-manager,
       nixos-hardware,
       nixpkgs,
+      nixpkgs-stable,
       vscode-extensions,
     }@inputs:
     let
       inherit (nixpkgs) lib;
       lib' = import ./lib.nix { inherit lib; };
+      pkgs-stable = import nixpkgs-stable { system = "x86_64-linux"; };
 
       specialArgs = rec {
-        inherit inputs lib';
+        inherit inputs lib' pkgs-stable;
         var = import ./var { inherit lib; };
         secrets = lib'.walk-dir ./secrets;
       };

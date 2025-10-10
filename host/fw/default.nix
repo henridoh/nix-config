@@ -20,7 +20,6 @@
       grub = {
         enable = true;
         efiSupport = true;
-        device = "/dev/nvme0n1";
       };
     };
 

@@ -14,6 +14,21 @@ _: {
     ./services.nix
   ];
 
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+    };
+
+    kernelPackages = pkgs.linuxPackages_6_12;
+
+    initrd.systemd.network.wait-online.enable = false;
+  };
+
   security = {
     acme = {
       acceptTerms = true;

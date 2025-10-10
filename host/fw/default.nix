@@ -11,8 +11,18 @@
     (inputs.disko.nixosModules.disko ./disko.nix)
   ];
 
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.resumeDevice = "/dev/disk/by-label/nixswap";
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+    };
+
+    initrd.luks.devices.cryptstorage.device = "/dev/disk/by-uuid/TODO";
+
+    kernelPackages = pkgs.linuxPackages_6_12;
+    kernel.sysctl."kernel.sysrq" = 1;
+
+    initrd.systemd.network.wait-online.enable = false;
+  };
 
   powerManagement = {
     enable = true;

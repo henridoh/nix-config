@@ -13,8 +13,24 @@
     common-pc-laptop-ssd
   ];
 
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.resumeDevice = "/dev/disk/by-label/nixswap";
+  boot = {
+    loader = {
+      efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device = "nodev";
+      };
+    };
+
+    resumeDevice = "/dev/disk/by-label/nixswap";
+
+    kernelPackages = pkgs.linuxPackages_6_12;
+    kernel.sysctl."kernel.sysrq" = 1;
+
+    initrd.systemd.network.wait-online.enable = false;
+  };
 
   # Fix for touchpad physical click not working
   boot.kernelParams = [ "psmouse.synaptics_intertouch=0" ];

@@ -17,8 +17,6 @@
       efi.canTouchEfiVariables = true;
     };
 
-    initrd.luks.devices.cryptstorage.device = "/dev/disk/by-uuid/TODO";
-
     kernelPackages = pkgs.linuxPackages_6_12;
     kernel.sysctl."kernel.sysrq" = 1;
 

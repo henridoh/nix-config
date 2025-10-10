@@ -33,15 +33,15 @@ in
 
   config = mkIf cfg.enable {
     hd.desktop = {
-      accounts.enable = true;
-      audio.enable = true;
-      fonts.enable = true;
-      gpg.enable = true;
-      network.enable = true;
-      security.enable = true;
-      services.enable = true;
-      software.enable = true;
-      wm.enable = true;
+      accounts.enable = lib.mkDefault true;
+      audio.enable = lib.mkDefault true;
+      fonts.enable = lib.mkDefault true;
+      gpg.enable = lib.mkDefault true;
+      network.enable = lib.mkDefault true;
+      security.enable = lib.mkDefault true;
+      services.enable = lib.mkDefault true;
+      software.enable = lib.mkDefault true;
+      wm.enable = lib.mkDefault true;
     };
 
     nixpkgs.config.allowUnfreePredicate =

@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
-  networking.hostName = "c2";
+  networking.hostName = "fw";
 
   age.identityPaths = [
     "/root/.ssh/id_ed25519"

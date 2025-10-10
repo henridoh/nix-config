@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   networking.hostName = "roam";
 
   age.identityPaths = [

@@ -40,11 +40,13 @@ in
         content = {
           type = "gpt";
           partitions = {
-            ESP = {
-              size = "512M";
-              label = "boot";
-              name = "BOOT";
+            boot = {
+              size = "1M";
               type = "EF02";
+            };
+            ESP = {
+              size = "1G";
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";

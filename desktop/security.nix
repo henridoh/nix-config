@@ -11,7 +11,12 @@ in
 {
   options.hd.desktop.security.enable = mkEnableOption "Security";
   config = mkIf cfg.enable {
-    security.pam.services.login.enableGnomeKeyring = true;
-    services.gnome.gnome-keyring.enable = true;
+    security.pam = {
+      services.login.enableGnomeKeyring = true;
+    };
+    services = {
+      gnome.gnome-keyring.enable = true;
+    };
+    programs.seahorse.enable = true;
   };
 }

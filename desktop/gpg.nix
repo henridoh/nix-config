@@ -13,7 +13,6 @@ in
   config = mkIf cfg.enable {
     home = {
       home.packages = with pkgs; [
-        seahorse
         libsecret
         gnome-keyring
       ];

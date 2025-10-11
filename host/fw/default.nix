@@ -58,6 +58,30 @@
     cpuFreqGovernor = "ondemand";
   };
 
+  nix = {
+    buildMachines = [
+      {
+        hostName = "noravm";
+        sshUser = "nixremote";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        maxJobs = 32;
+        speedFactor = 2;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
+    ];
+    distributedBuilds = true;
+    extraOptions = ''
+      	  builders-use-substitutes = true
+      	'';
+  };
+
   hd.desktop.enable = true;
 
   networking.firewall = {

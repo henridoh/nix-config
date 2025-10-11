@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   networking.hostName = "fw";
 
@@ -11,18 +16,28 @@
     inputs.disko.nixosModules.disko
     ./disko.nix
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
+
+  environment.systemPackages = [
+    pkgs.sbctl
   ];
 
   services.fprintd.enable = true;
   # security.pam.enableFscrypt = true;
 
   boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     loader = {
+      systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        efiSupport = true;
-      };
+      # grub = {
+      #   enable = false;
+      #   efiSupport = true;
+      # };
     };
 
     kernelPackages = pkgs.linuxPackages_6_12;

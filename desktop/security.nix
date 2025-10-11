@@ -11,6 +11,7 @@ in
 {
   options.hd.desktop.security.enable = mkEnableOption "Security";
   config = mkIf cfg.enable {
-    security = { };
+    security.pam.services.login.enableGnomeKeyring = true;
+    services.gnome.gnome-keyring.enable = true;
   };
 }

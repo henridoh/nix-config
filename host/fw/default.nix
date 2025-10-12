@@ -84,8 +84,9 @@
 
   hd.desktop.enable = true;
 
-  networking.firewall = {
-    enable = true;
+  networking = {
+    useDHCP = lib.mkDefault true;
+    firewall.enable = true;
   };
 
   # ====== DON'T CHANGE ======

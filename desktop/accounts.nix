@@ -70,21 +70,23 @@ in
           primary = true;
           thunderbird = {
             enable = true;
+            color = "#DC8ADD";
           };
           remote = {
             type = "caldav";
             url = "https://posteo.de:8443/calendars/henridohmen/default";
-            userName = "henridohmen@posteo.com";
+            userName = "henridohmen";
           };
         };
         "Uni" = {
           thunderbird = {
             enable = true;
+            color = "#FFBE6F";
           };
           remote = {
             type = "caldav";
             url = "https://posteo.de:8443/calendars/henridohmen/zqrobi";
-            userName = "henridohmen@posteo.com";
+            userName = "henridohmen";
           };
         };
       };

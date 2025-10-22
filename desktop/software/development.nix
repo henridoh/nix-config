@@ -17,6 +17,8 @@ in
     environment.systemPackages = with pkgs; [
       binutils
       clang
+      elan
+      emacs
       gcc
       gdb
       gnumake
@@ -26,7 +28,6 @@ in
       python313
       python313Packages.mypy
       rustup
-      emacs
       # jetbrains.gateway
       # jetbrains.rust-rover
     ];
@@ -45,6 +46,7 @@ in
             editorconfig.editorconfig
             james-yu.latex-workshop
             jnoortheen.nix-ide
+            leanprover.lean4
             ltex-plus.vscode-ltex-plus
             maximedenes.vscoq
             mkhl.direnv

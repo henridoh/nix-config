@@ -1,6 +1,6 @@
 #!/bin/sh
 tmp=$(mktemp -d)
-trap 'rm -rf -- "$keyfile"' EXIT
+trap 'rm -rf -- "$tmp"' EXIT
 
 # ref https://stackoverflow.com/questions/59738140/why-is-firefox-not-trusting-my-self-signed-certificate
 openssl req -x509 -nodes \
@@ -8,7 +8,7 @@ openssl req -x509 -nodes \
   -keyout "$tmp/ca.key" \
   -days 365 \
   -out "$tmp/ca.cert" \
-  -subj '/CN=hd_root' \
+  -subj '/CN=hd_root'
 
 rm secrets/tlskey.age
 openssl req -nodes \

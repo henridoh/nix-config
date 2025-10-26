@@ -117,9 +117,9 @@ in
           signer = "openpgp";
           key = "AB79213B044674AE";
         };
-        userName = "Henri Dohmen";
-        userEmail = "henridohmen@posteo.com";
-        extraConfig = {
+        settings = {
+          user.name = "Henri Dohmen";
+          user.email = "henridohmen@posteo.com";
           color.ui = "auto";
           column.ui = "auto";
           branch.sort = "-committerdate";

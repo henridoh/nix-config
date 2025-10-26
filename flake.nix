@@ -132,12 +132,14 @@
         pkgs = import nixpkgs { inherit system; };
       in
       {
-        devShells.default = pkgs.mkShell {
-          buildInputs = [
-            colmena.packages.${system}.colmena
-            agenix.packages.${system}.default
-            pkgs.openssl
-          ];
+        devShells = import ./devshells { inherit pkgs; } // {
+          default = pkgs.mkShell {
+            buildInputs = [
+              colmena.packages.${system}.colmena
+              agenix.packages.${system}.default
+              pkgs.openssl
+            ];
+          };
         };
         formatter = pkgs.nixfmt-tree;
       }

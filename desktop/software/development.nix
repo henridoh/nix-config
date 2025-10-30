@@ -15,7 +15,7 @@ in
     documentation.dev.enable = true;
 
     environment.systemPackages = with pkgs; [
-      agda
+      (agda.withPackages (p: [ p.standard-library ]))
       binutils
       clang
       elan
@@ -33,9 +33,14 @@ in
     ];
 
     home = {
+      xdg.configFile = {
+        "agda/libraries".text = ''
+          ${pkgs.agdaPackages.standard-library}/standard-library.agda-lib
+        '';
+      };
       programs.emacs = {
         enable = true;
-        extraPackages = epkgs: with epkgs; [ agda2-mode ];
+        extraPackages = epkgs: [ epkgs.agda2-mode ];
         extraConfig = builtins.readFile ../../dotfiles/emacs/init.el;
       };
       programs.vscode = {

@@ -15,10 +15,10 @@ in
     documentation.dev.enable = true;
 
     environment.systemPackages = with pkgs; [
+      agda
       binutils
       clang
       elan
-      emacs
       gcc
       gdb
       gnumake
@@ -33,7 +33,11 @@ in
     ];
 
     home = {
-      xdg.configFile."emacs/init.el".source = ../../dotfiles/emacs/init.el;
+      programs.emacs = {
+        enable = true;
+        extraPackages = epkgs: with epkgs; [ agda2-mode ];
+        extraConfig = builtins.readFile ../../dotfiles/emacs/init.el;
+      };
       programs.vscode = {
         enable = true;
         package = pkgs.vscodium;
@@ -42,6 +46,7 @@ in
           enableExtensionUpdateCheck = true;
           enableUpdateCheck = false;
           extensions = with pkgs.vscode-marketplace; [
+            banacorn.agda-mode
             dnut.rewrap-revived
             editorconfig.editorconfig
             james-yu.latex-workshop

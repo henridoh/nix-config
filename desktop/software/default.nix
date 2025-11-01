@@ -28,10 +28,8 @@ in
       fuzzel
       gh
       nil
-      rclone
       signal-desktop
       spotify-player
-      stow
       tor-browser
       usbutils
       vlc

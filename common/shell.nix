@@ -7,7 +7,6 @@
 
   environment.systemPackages = with pkgs; [
     colmena
-    dive
     dnsutils
     fd
     htop

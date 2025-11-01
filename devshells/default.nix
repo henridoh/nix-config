@@ -1,6 +1,6 @@
 { pkgs }:
 {
   agda = pkgs.mkShell {
-    buildINputs = with pkgs; [ agda ];
+    buildInputs = with pkgs; [ agda ];
   };
 }

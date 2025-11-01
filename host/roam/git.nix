@@ -13,7 +13,7 @@ in
     group = "git";
     shell = "${pkgs.git}/bin/git-shell";
     openssh.authorizedKeys.keys = var.ssh-keys.hd;
-    password = "!";
+    hashedPassword = "!";
   };
 
   services =

@@ -1,5 +1,6 @@
 {
   var,
+  pkgs,
   config,
   secrets,
   ...
@@ -32,10 +33,27 @@
       enable = true;
       settings.PasswordAuthentication = false;
     };
+
+    minecraft-server = {
+      enable = true;
+      package = pkgs.papermcServers.papermc-1_21_9;
+      eula = true;
+      declarative = true;
+      serverProperties = {
+        level-seed = "hd";
+        difficulty = 3;
+        spawn-protection = 0;
+        server-ip = "0.0.0.0";
+      };
+      jvmOpts = "-Xms2048M -Xmx4096M";
+    };
   };
 
   networking.firewall = {
     enable = true;
+    interfaces."wg0" = {
+      allowedTCPPorts = [ 25565 ];
+    };
     allowedTCPPorts = [
       80
       443

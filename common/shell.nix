@@ -11,6 +11,7 @@
     fd
     htop
     killall
+    nettools
     podman-compose
     podman-tui
     ripgrep

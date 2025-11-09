@@ -68,6 +68,10 @@
       	'';
   };
 
+  environment.systemPackages = with pkgs; [
+    prismlauncher
+  ];
+
   # ====== DON'T CHANGE ======
   system.stateVersion = "25.05";
 }

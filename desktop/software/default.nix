@@ -21,9 +21,9 @@ in
       # niri
       # obsidian
       # vesktop
-      bitwarden
+      bitwarden-desktop
       calibre
-      element-desktop
+      # element-desktop -- https://github.com/NixOS/nixpkgs/pull/334638#issuecomment-2289025802
       file
       fuzzel
       gh
@@ -37,7 +37,6 @@ in
       wl-clipboard
       yt-dlp
       zotero
-      zulip
     ];
 
     virtualisation = {

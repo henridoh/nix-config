@@ -37,6 +37,7 @@ in
       wl-clipboard
       yt-dlp
       zotero
+      zulip
     ];
 
     virtualisation = {

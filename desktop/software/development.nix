@@ -40,7 +40,38 @@ in
       };
       programs.emacs = {
         enable = true;
-        extraPackages = epkgs: [ epkgs.agda2-mode ];
+        extraPackages =
+          epkgs: with epkgs; [
+            ace-window
+            agda2-mode
+            better-defaults
+            cmake-mode
+            company
+            consult
+            delight
+            doom-themes
+            editorconfig
+            exec-path-from-shell
+            fish-mode
+            haskell-mode
+            hl-todo
+            lsp-mode
+            magit
+            marginalia
+            markdown-mode
+            multiple-cursors
+            orderless
+            proof-general
+            pyvenv
+            rainbow-delimiters
+            restart-emacs
+            rust-mode
+            undo-tree
+            use-package
+            vertico
+            which-key
+            yaml-mode
+          ];
         extraConfig = builtins.readFile ../../dotfiles/emacs/init.el;
       };
       programs.vscode = {

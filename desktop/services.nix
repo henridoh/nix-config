@@ -20,7 +20,6 @@ in
         openFirewall = true;
       };
       udisks2.enable = true;
-      emacs.enable = true;
     };
 
     home.services.protonmail-bridge = {
@@ -31,18 +30,21 @@ in
       ];
     };
 
-    home.services.unison' = {
-      # TODO: parameterize
-      enable = true;
-      pairs = {
-        "docs".roots = [
-          "/home/hd/Documents"
-          "ssh://roam.lan//home/hd/Documents"
-        ];
-        "desktop".roots = [
-          "/home/hd/Desktop"
-          "ssh://roam.lan//home/hd/Desktop"
-        ];
+    home.services = {
+      emacs.enable = true;
+      unison' = {
+        # TODO: parameterize
+        enable = true;
+        pairs = {
+          "docs".roots = [
+            "/home/hd/Documents"
+            "ssh://roam.lan//home/hd/Documents"
+          ];
+          "desktop".roots = [
+            "/home/hd/Desktop"
+            "ssh://roam.lan//home/hd/Desktop"
+          ];
+        };
       };
     };
   };

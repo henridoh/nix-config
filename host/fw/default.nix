@@ -26,6 +26,9 @@
     };
   };
 
+  # BIOS updated
+  services.fwupd.enable = true;
+
   environment.systemPackages = [
     pkgs.sbctl
   ];

@@ -34,6 +34,7 @@
   ];
 
   services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
   # security.pam.enableFscrypt = true;
 
   boot = {

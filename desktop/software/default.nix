@@ -17,17 +17,13 @@ in
     hd.desktop.software.development.enable = true;
 
     environment.systemPackages = with pkgs; [
-      # kitty
-      # niri
-      # obsidian
-      # vesktop
       bitwarden-desktop
       calibre
-      # element-desktop -- https://github.com/NixOS/nixpkgs/pull/334638#issuecomment-2289025802
       file
       fuzzel
       gh
       nil
+      pciutils
       signal-desktop
       spotify-player
       tor-browser

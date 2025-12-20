@@ -1,11 +1,13 @@
-{ lib, ... }@inp:
+{ lib, ... }@inputs:
 let
-  files = [
-    "lan-dns"
-    "ssh-keys"
-    "wg"
-  ];
-  import_file = name: { ${name} = import ./${name}.nix (inp // { inherit var; }); };
-  var = lib.foldl' (a: b: a // b) { } (map import_file files);
+  inputs' = inputs // {
+    var = outputs;
+  };
+  # watch out for cycles
+  outputs = {
+    "lan-dns" = import ./lan-dns.nix inputs';
+    "ssh-keys" = import ./ssh-keys.nix inputs';
+    "wg" = import ./wg.nix inputs';
+  };
 in
-var
+outputs

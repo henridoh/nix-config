@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./services.nix
+    ./syncthing.nix
   ];
 
   boot = {

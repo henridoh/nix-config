@@ -35,6 +35,7 @@ rec {
   };
   keyFile = "/var/secrets/wg.key";
 
+  # Helper method: `peers-for x` filters out `x` from wireguard-network
   peers-for =
     host:
     map (lib.filterAttrs (n: _: n != "ips")) (

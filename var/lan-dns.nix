@@ -1,3 +1,4 @@
+# Wireguard peers hardcoded in /etc/hosts until I have a nice dns solution
 { lib, var, ... }:
 let
   lan-hosts = lib.mapAttrs' (name: value: {

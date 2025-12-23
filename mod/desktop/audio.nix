@@ -9,8 +9,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.audio.enable = mkEnableOption "Audio";
-
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       pavucontrol

@@ -6,6 +6,10 @@
 }:
 {
   networking.hostName = "fw";
+  hd = {
+    desktop.enable = true;
+    buildMachines.enable = true;
+  };
 
   age.identityPaths = [
     "/root/.ssh/id_ed25519"
@@ -34,8 +38,6 @@
   ];
 
   services.fprintd.enable = true;
-  # services.fprintd.tod.enable = true;
-  # security.pam.enableFscrypt = true;
 
   boot = {
     lanzaboote = {
@@ -45,52 +47,16 @@
     loader = {
       systemd-boot.enable = lib.mkForce false;
       efi.canTouchEfiVariables = true;
-      # grub = {
-      #   enable = false;
-      #   efiSupport = true;
-      # };
     };
 
     kernelPackages = pkgs.linuxPackages_6_18;
     kernel.sysctl."kernel.sysrq" = 1;
-
     initrd.systemd.network.wait-online.enable = false;
   };
 
   powerManagement = {
     enable = true;
     cpuFreqGovernor = "ondemand";
-  };
-
-  nix = {
-    buildMachines = [
-      {
-        hostName = "noravm";
-        sshUser = "nixremote";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        maxJobs = 32;
-        speedFactor = 2;
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-        mandatoryFeatures = [ ];
-      }
-    ];
-    distributedBuilds = true;
-    extraOptions = ''
-      	  builders-use-substitutes = true
-      	'';
-  };
-
-  hd.desktop.enable = true;
-
-  networking = {
-    useDHCP = lib.mkDefault true;
-    firewall.enable = true;
   };
 
   # ====== DON'T CHANGE ======

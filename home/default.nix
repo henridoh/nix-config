@@ -7,6 +7,9 @@
   ...
 }:
 {
+  # `options.home` is declared in /mod/desktop/default.nix s.t. it is accessible
+  # even when no home-manager is loaded.
+
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];

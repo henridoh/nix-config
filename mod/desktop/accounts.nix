@@ -4,7 +4,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.accounts.enable = mkEnableOption "Accounts";
   config = mkIf cfg.enable {
     home = {
       accounts.email.accounts = {

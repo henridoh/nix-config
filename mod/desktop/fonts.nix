@@ -9,7 +9,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.fonts.enable = mkEnableOption "Fonts";
   config = mkIf cfg.enable {
     fonts = {
       packages = with pkgs; [

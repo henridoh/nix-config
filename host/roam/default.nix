@@ -27,7 +27,6 @@
     };
 
     kernelPackages = pkgs.linuxPackages_6_12;
-
     initrd.systemd.network.wait-online.enable = false;
   };
 

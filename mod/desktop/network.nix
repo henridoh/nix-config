@@ -11,10 +11,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.network = {
-    enable = mkEnableOption "All Network Options";
-  };
-
   config = mkIf cfg.enable {
 
     hardware.bluetooth.enable = true;

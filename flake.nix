@@ -73,7 +73,7 @@
           modules = [
             ./host/solo
             ./home
-            ./common
+            ./mod
             overlays
           ];
         };
@@ -86,7 +86,7 @@
           modules = [
             ./host/c2
             ./home
-            ./common
+            ./mod
             overlays
           ];
         };
@@ -99,7 +99,7 @@
           modules = [
             ./host/fw
             ./home
-            ./common
+            ./mod
             overlays
           ];
         };
@@ -119,7 +119,7 @@
           };
           imports = [
             ./host/roam
-            ./common
+            ./mod
             overlays
           ];
         };

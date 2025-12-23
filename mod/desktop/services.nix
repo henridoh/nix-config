@@ -9,8 +9,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.services.enable = mkEnableOption "Services";
-
   config = mkIf cfg.enable {
     services = {
       printing.enable = true;

@@ -9,7 +9,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.gpg.enable = mkEnableOption "GPG";
   config = mkIf cfg.enable {
     home = {
       home.packages = with pkgs; [
@@ -20,11 +19,11 @@ in
         enable = true;
         publicKeys = [
           {
-            source = ../pgp/id-priv.pgp;
+            source = ../../pgp/id-priv.pgp;
             trust = 5;
           }
           {
-            source = ../pgp/id-uni.pgp;
+            source = ../../pgp/id-uni.pgp;
             trust = 5;
           }
         ];

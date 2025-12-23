@@ -9,8 +9,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hd.desktop.software.development.enable = mkEnableOption "Dev Software";
-
   config = mkIf cfg.enable {
     documentation.dev.enable = true;
 
@@ -72,7 +70,7 @@ in
             which-key
             yaml-mode
           ];
-        extraConfig = builtins.readFile ../../dotfiles/emacs/init.el;
+        extraConfig = builtins.readFile ../../../dotfiles/emacs/init.el;
       };
       programs.vscode = {
         enable = true;

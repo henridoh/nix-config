@@ -11,8 +11,6 @@ in
 {
   imports = [ ./development.nix ];
 
-  options.hd.desktop.software.enable = mkEnableOption "Software";
-
   config = mkIf cfg.enable {
     hd.desktop.software.development.enable = true;
 

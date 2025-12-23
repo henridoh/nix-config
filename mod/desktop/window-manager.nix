@@ -1,12 +1,11 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
 let
   cfg = config.hd.desktop.windowManager;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
 in
 {
   config = mkIf cfg.enable {

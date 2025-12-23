@@ -2,7 +2,6 @@
   config,
   pkgs,
   secrets,
-  var,
   ...
 }:
 {

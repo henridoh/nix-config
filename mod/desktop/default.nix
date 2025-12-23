@@ -1,8 +1,6 @@
 {
-  inputs,
   lib,
   config,
-  options,
   ...
 }:
 with lib;

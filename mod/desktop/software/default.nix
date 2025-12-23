@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.hd.desktop.software;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
 in
 {
   imports = [ ./development.nix ];

@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cfg = config.hd.desktop.accounts;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
 in
 {
   config = mkIf cfg.enable {

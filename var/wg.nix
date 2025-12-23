@@ -44,5 +44,5 @@ rec {
 
   ips =
     with builtins;
-    mapAttrs (name: value: head (lib.splitString "/" (head value.ips))) wireguard-network;
+    mapAttrs (_: value: head (lib.splitString "/" (head value.ips))) wireguard-network;
 }

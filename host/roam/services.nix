@@ -1,8 +1,5 @@
 {
-  var,
   pkgs,
-  config,
-  secrets,
   ...
 }:
 {

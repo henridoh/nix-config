@@ -8,7 +8,7 @@
 }:
 let
   cfg = config.hd.desktop.network;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
 in
 {
   config = mkIf cfg.enable {

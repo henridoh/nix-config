@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.hd.desktop.services;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkIf;
 in
 {
   config = mkIf cfg.enable {

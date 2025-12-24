@@ -12,20 +12,19 @@ in
   imports = [ ./development.nix ];
 
   config = mkIf cfg.enable {
-    hd.desktop.software.development.enable = true;
-
     environment.systemPackages = with pkgs; [
       bitwarden-desktop
       calibre
-      file
+      colmena
+      firefox
       fuzzel
       gh
       nil
-      pciutils
+      pandoc
       signal-desktop
       spotify-player
+      texliveSmall
       tor-browser
-      usbutils
       vlc
       wireguard-tools
       wl-clipboard

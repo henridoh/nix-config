@@ -13,18 +13,22 @@ with lib;
     ];
 
     environment.systemPackages = with pkgs; [
-      colmena
       dnsutils
       fd
+      file
       htop
       killall
       nettools
+      nmap
+      pciutils
       podman-compose
       podman-tui
       ripgrep
       unison
       unzip
+      usbutils
       wget
+      whois
     ];
 
     programs = {

@@ -16,7 +16,6 @@ in
       bitwarden-desktop
       calibre
       colmena
-      firefox
       fuzzel
       gh
       nil
@@ -41,7 +40,45 @@ in
       };
     };
 
-    programs.kdeconnect.enable = true;
+    programs = {
+      kdeconnect.enable = true;
+      firefox = {
+        enable = true;
+        wrapperConfig = {
+          pipewireSupport = true;
+        };
+        policies = {
+          ExtensionSettings = {
+            "uBlock0@raymondhill.net" = {
+              installation_mode = "normal_installed";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            };
+          };
+        };
+        preferences = {
+          "toolkit.telemetry.enabled" = false;
+          "toolkit.telemetry.unified" = false;
+          "toolkit.telemetry.archive.enabled" = false;
+          "toolkit.telemetry.server" = "";
+          "experiments.supported" = false;
+          "experiments.enabled" = false;
+          "experiments.manifest.uri" = "";
+          "datareporting.usage.uploadEnabled" = false;
+          "network.allow-experiments" = false;
+          "breakpad.reportURL" = "";
+          "browser.urlbar.suggest.quicksuggest" = false;
+          "extensions.pocket.enabled" = false;
+          "signon.rememberSignons" = false;
+          "signon.autofillForms" = false;
+          "signon.autofillForms.autocompleteOff" = false;
+          "browser.formfill.enable" = false;
+          "browser.shell.checkDefaultBrowser" = false;
+          "browser.topsites.contile.enabled" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        };
+      };
+    };
 
     home = {
       programs.fish = {
@@ -85,7 +122,7 @@ in
           "privacy.resistFingerprinting.block_mozAddonManager" = true;
           "network.http.sendRefererHeader" = 1;
           "intl.accept_languages" = "en,en-us";
-          "privacy.resistFingerprinting.letterboxing" = true;
+          "privacy.resistFingerprinting.letterboxing" = false;
         };
       };
       programs.thunderbird = {

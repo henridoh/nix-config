@@ -104,6 +104,8 @@ in
             "ltex.ltex-ls.path" = "${pkgs.ltex-ls-plus}";
             "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
             "latex-workshop.latex.autoBuild.run" = "never";
+            # disable the cluttering Rust type hints unless crtl+alt is pressed
+            "editor.inlayHints.enabled" = "offUnlessPressed";
           };
         };
       };

@@ -24,6 +24,7 @@ with lib;
       podman-compose
       podman-tui
       ripgrep
+      strace
       unison
       unzip
       usbutils

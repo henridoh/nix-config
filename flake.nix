@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs_25-05.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     colmena = {
       url = "github:zhaofengli/colmena";
@@ -42,17 +42,17 @@
       home-manager,
       lanzaboote,
       nixos-hardware,
-      nixpkgs-stable,
+      nixpkgs_25-05,
       nixpkgs,
       vscode-extensions,
     }@inputs:
     let
       inherit (nixpkgs) lib;
       lib' = import ./lib.nix { inherit lib; };
-      pkgs-stable = import nixpkgs-stable { system = "x86_64-linux"; };
+      pkgs_25-05 = import nixpkgs_25-05 { system = "x86_64-linux"; };
 
       specialArgs = rec {
-        inherit inputs lib' pkgs-stable;
+        inherit inputs lib' pkgs_25-05;
         var = import ./var { inherit lib; };
         secrets = lib'.walk-dir ./secrets;
       };

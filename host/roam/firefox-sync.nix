@@ -1,6 +1,6 @@
 {
   pkgs,
-  pkgs-stable,
+  pkgs_25-05,
   config,
   secrets,
   ...
@@ -18,7 +18,7 @@
 
   services.firefox-syncserver = {
     enable = true;
-    package = pkgs-stable.syncstorage-rs;
+    package = pkgs_25-05.syncstorage-rs;
     secrets = config.age.secrets.roam-firefox-sync-secret.path;
     singleNode = {
       enable = true;

@@ -59,6 +59,7 @@ with lib;
     inputs.agenix.nixosModules.default
     ./locale.nix
     ./nix.nix
+    ./overlays.nix
     ./security.nix
     ./shell.nix
     ./users.nix

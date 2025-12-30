@@ -62,53 +62,27 @@
           ;
         secrets = lib'.walk-dir ./secrets;
       };
-      overlays = _: {
-        nixpkgs.overlays = [
-          vscode-extensions.overlays.default
-          colmena.overlay
-        ];
-      };
+
+      mkDesktop =
+        host:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = specialArgs // {
+            inherit host;
+          };
+          modules = [
+            (./host + "/${host}")
+            ./home
+            ./mod
+          ];
+        };
     in
     {
       nixosConfigurations = {
-        "solo" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = specialArgs // {
-            host = "solo";
-          };
-          modules = [
-            ./host/solo
-            ./home
-            ./mod
-            overlays
-          ];
-        };
-
-        "c2" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = specialArgs // {
-            host = "c2";
-          };
-          modules = [
-            ./host/c2
-            ./home
-            ./mod
-            overlays
-          ];
-        };
-
-        "fw" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = specialArgs // {
-            host = "fw";
-          };
-          modules = [
-            ./host/fw
-            ./home
-            ./mod
-            overlays
-          ];
-        };
+        # if you add a host, make sure to add it to var/default.nix as well
+        "solo" = mkDesktop "solo";
+        "c2" = mkDesktop "c2";
+        "fw" = mkDesktop "fw";
       };
 
       colmenaHive = colmena.lib.makeHive {
@@ -126,7 +100,6 @@
           imports = [
             ./host/roam
             ./mod
-            overlays
           ];
         };
       };

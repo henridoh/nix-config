@@ -13,7 +13,7 @@ let
   is-server = this == "roam";
 
   devices = lib.attrNames var.syncthing.all;
-  desktop-devices = (lib.intersectLists var.desktops devices);
+  desktop-devices = (lib.intersectLists var.nixos-desktops devices);
 
   folders = folders-all // (if config.hd.desktop.enable then folders-desktop else { });
 

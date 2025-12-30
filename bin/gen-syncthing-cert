@@ -13,26 +13,26 @@ first_missing=$(
         . as $root
         | $root.managed_clients[]
         | select($root.hashes[.] | not)
-    ' $FILEPATH \
+    ' "$FILEPATH" \
     | head -n 1 \
 )
 [ -z "$first_missing" ] && echo "Done" >&2 && exit 0
 
 echo "Generating cerificate for $first_missing"
-mkdir $tmp/$first_missing
+mkdir "$tmp/$first_missing"
 hash=$(
     syncthing generate \
-        --config $tmp/$first_missing \
-        --data $tmp/$first_missing/data \
+        --config "$tmp/$first_missing" \
+        --data "$tmp/$first_missing/data" \
         | grep -oP '(?<=device=)[A-Z0-9-]+' \
 )
 
-mkdir -p $PKI_PATH
-mv $tmp/$first_missing/cert.pem $PKI_PATH/$first_missing.cert
+mkdir -p "$PKI_PATH"
+mv "$tmp/$first_missing/cert.pem" "$PKI_PATH/$first_missing.cert"
 
 # Remove the file so agenix does not try to decrypt
 [ -f "$SECRETS_PATH/$first_missing.age" ] && rm "$SECRETS_PATH/$first_missing.age"
-agenix -e $SECRETS_PATH/$first_missing.age < $tmp/$first_missing/key.pem
+agenix -e "$SECRETS_PATH/$first_missing.age" < "$tmp/$first_missing/key.pem"
 
 jq --arg client "$first_missing" \
     --arg hash "$hash" \

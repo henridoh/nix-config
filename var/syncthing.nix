@@ -6,8 +6,8 @@ let
   };
 in
 assert (
-  lib.assertMsg (
-    builtins.attrNames hashes == managed_clients
+  lib.assertMsg (lib.all (c: lib.elem c (builtins.attrNames hashes))
+    managed_clients
   ) "Not all declaratively configured syncthing clients have keys. Rerun ./bin/gen-syncthing-cert"
 );
 assert (

@@ -5,5 +5,6 @@
     ./common
     ./desktop
     ./nginx.nix
+    ./syncthing.nix
   ];
 }

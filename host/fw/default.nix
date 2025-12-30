@@ -16,11 +16,12 @@
   ];
 
   imports = [
-    ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
-    ./disko.nix
     inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series
     inputs.lanzaboote.nixosModules.lanzaboote
+    ./disko.nix
+    ./hardware-configuration.nix
+    ./syncthing.nix
   ];
 
   # https://github.com/NixOS/nixos-hardware/issues/1603

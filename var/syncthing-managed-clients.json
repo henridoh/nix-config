@@ -1,0 +1,10 @@
+{
+  "managed_clients": [
+    "fw",
+    "roam"
+  ],
+  "hashes": {
+    "fw": "YZGGXOT-MPFD7O4-ACLGOGT-LIMZVD3-7JBSZZR-LFCFWQL-BLO435I-LLH6GAL",
+    "roam": "HMB7ZRF-OODFHHW-2QCIFFJ-M7COVK5-YUB3GKT-SI56D2U-CPTTJEP-R3ZKOQ7"
+  }
+}

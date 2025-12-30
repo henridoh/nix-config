@@ -137,6 +137,8 @@
               colmena.packages.${system}.colmena
               agenix.packages.${system}.default
               pkgs.openssl
+              pkgs.jq
+              pkgs.syncthing
             ];
           };
         };

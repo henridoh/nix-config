@@ -23,7 +23,7 @@ with lib;
         extraGroups = [ "wheel" ];
         shell = pkgs.fish;
         packages = [ ];
-        openssh.authorizedKeys.keys = var.ssh-keys.trusted;
+        openssh.authorizedKeys.keys = var.ssh-keys.trusted-hd;
         hashedPasswordFile = config.age.secrets.hd-password.path;
       };
       users.root = {

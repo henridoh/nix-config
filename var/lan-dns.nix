@@ -7,6 +7,7 @@ let
   }) var.wg.ips;
   custom-hosts = with var.wg.ips; {
     "git.lan" = roam;
+    "syncthing.roam.lan" = roam;
   };
 in
 rec {

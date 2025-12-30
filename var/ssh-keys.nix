@@ -16,12 +16,15 @@ let
     };
   };
   keys' = mkKeys keys;
+  mkTrusted =
+    user: with keys'.by-host.${user}; [
+      solo
+      c2
+      fw
+    ];
 in
 keys'
 // {
-  trusted = with keys'.by-host.hd; [
-    solo
-    c2
-    fw
-  ];
+  trusted-hd = mkTrusted "hd";
+  trusted-root = mkTrusted "root";
 }

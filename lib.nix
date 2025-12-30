@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, var, ... }:
 with builtins;
 rec {
   walk-dir =
@@ -16,4 +16,7 @@ rec {
         else
           throw "Items of type ${value} are unsupported.";
     }) dir;
+
+  is-desktop = x: builtins.elem x var.desktops;
+  is-server = x: builtins.elem x var.servers;
 }

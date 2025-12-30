@@ -48,12 +48,18 @@
     }@inputs:
     let
       inherit (nixpkgs) lib;
-      lib' = import ./lib.nix { inherit lib; };
+      var = import ./var { inherit lib; };
+      lib' = import ./lib.nix { inherit lib var; };
+
       pkgs_25-05 = import nixpkgs_25-05 { system = "x86_64-linux"; };
 
       specialArgs = rec {
-        inherit inputs lib' pkgs_25-05;
-        var = import ./var { inherit lib; };
+        inherit
+          inputs
+          lib'
+          pkgs_25-05
+          var
+          ;
         secrets = lib'.walk-dir ./secrets;
       };
       overlays = _: {

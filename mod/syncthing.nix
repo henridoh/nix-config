@@ -9,44 +9,47 @@ let
   cfg = config.services.syncthing;
   this = config.networking.hostName;
 
-  is-managed = builtins.elem this var.syncthing-managed-clients.managed_clients;
+  is-managed = var.syncthing.managed ? ${this};
   is-server = this == "roam";
 
-  devices = [
-    "roam"
-    "fw"
-  ];
+  devices = lib.attrNames var.syncthing.all;
+  desktop-devices = (lib.intersectLists var.desktops devices);
 
-  devices-without-this = lib.remove this devices;
-  type-encrypt = if is-server then "receiveencrypted" else "sendreceive";
-  devices-encrypt =
-    if is-server then
-      devices-without-this
-    else
-      lib.remove "roam" devices-without-this
-      ++ [
-        {
-          name = "roam";
-          encryptionPasswordFile = config.age.secrets.syncthing-password.path;
-        }
-      ];
+  folders = folders-all // (if config.hd.desktop.enable then folders-desktop else { });
 
-  folders = {
+  folders-all = {
     documents = {
       id = "documents-hd";
       path = if is-server then "/data/sync/documents-hd" else "/home/hd/Documents";
-      type = type-encrypt;
-      devices = devices-encrypt;
+      type = if is-server then "receiveencrypted" else "sendreceive";
+      # all clients (desktops + servers) that have are a synthing peer but
+      # with untrusted servers
+      devices =
+        desktop-devices
+        ++ (
+          if this != "roam" then
+            [
+              {
+                name = "roam";
+                encryptionPasswordFile = config.age.secrets.syncthing-password.path;
+              }
+            ]
+          else
+            [ ]
+        );
       versioning = {
         type = "simple";
         params.keep = "10";
       };
     };
+  };
+
+  folders-desktop = {
     supernote-note = rec {
       id = "supernote-note";
       path = if is-server then "/data/sync/${id}" else "/home/hd/Documents/Supernote/Notizen";
       type = "sendreceive";
-      devices = devices-without-this ++ [ "supernote" ];
+      devices = desktop-devices ++ [ "supernote" ];
       versioning = {
         type = "simple";
         params.keep = "10";
@@ -74,7 +77,7 @@ in
     {
       inherit folders;
       settings = {
-        devices = var.syncthing;
+        devices = var.syncthing.all;
       };
       key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
       cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";

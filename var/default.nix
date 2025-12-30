@@ -9,12 +9,18 @@ let
   };
   load-var = x: import x inputs';
   # watch out for cycles
-  outputs = {
+  outputs = rec {
     "lan-dns" = load-var ./lan-dns.nix;
     "ssh-keys" = load-var ./ssh-keys.nix;
     "wg" = load-var ./wg.nix;
     "syncthing" = load-var ./syncthing.nix;
-    "syncthing-managed-clients" = lib'.importJSON ./syncthing-managed-clients.json;
+    desktops = [
+      "c2"
+      "fw"
+      "solo"
+    ];
+    servers = [ "roam" ];
+    clients = desktops ++ servers;
   };
 in
 outputs

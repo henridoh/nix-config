@@ -1,6 +1,6 @@
 { var, lib, ... }:
 let
-  inherit (var.syncthing-managed-clients) managed_clients hashes;
+  inherit (lib.importJSON ./syncthing-managed-clients.json) managed_clients hashes;
   unmanaged = {
     "supernote".id = "3LHXAND-FXDIDWR-7BYAIX4-3GW2BWY-IHTX7HH-LTEDI5T-W7ETGVC-BUP2NAF";
   };
@@ -15,4 +15,7 @@ assert (
     [ ] == (lib.intersectLists managed_clients (builtins.attrNames unmanaged))
   ) "Syncthing clients must either be unmanaged or declaratively configured."
 );
-unmanaged // builtins.mapAttrs (_: v: { id = v; }) hashes
+rec {
+  managed = builtins.mapAttrs (_: v: { id = v; }) hashes;
+  all = unmanaged // managed;
+}

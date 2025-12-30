@@ -11,7 +11,12 @@ let
 
   is-managed = builtins.elem this var.syncthing-managed-clients.managed_clients;
   is-server = this == "roam";
-  devices = lib.attrNames var.syncthing;
+
+  devices = [
+    "roam"
+    "fw"
+  ];
+
   devices-without-this = lib.remove this devices;
   type-encrypt = if is-server then "receiveencrypted" else "sendreceive";
   devices-encrypt =
@@ -37,6 +42,16 @@ let
         params.keep = "10";
       };
     };
+    supernote-note = rec {
+      id = "supernote-note";
+      path = if is-server then "/data/sync/${id}" else "/home/hd/Documents/Supernote/Notizen";
+      type = "sendreceive";
+      devices = devices-without-this ++ [ "supernote" ];
+      versioning = {
+        type = "simple";
+        params.keep = "10";
+      };
+    };
   };
 in
 {
@@ -54,12 +69,15 @@ in
     group = config.services.syncthing.group;
   };
 
-  services.syncthing = lib.mkIf cfg.enable {
-    inherit folders;
-    settings = {
-      devices = var.syncthing;
-    };
-    key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
-    cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";
-  };
+  services.syncthing = lib.mkIf cfg.enable (
+    assert lib.assertMsg (builtins.elem this devices) "${this} is not in devices in mod/syncthing.nix";
+    {
+      inherit folders;
+      settings = {
+        devices = var.syncthing;
+      };
+      key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
+      cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";
+    }
+  );
 }

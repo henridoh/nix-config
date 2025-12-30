@@ -2,7 +2,7 @@
 let
   inherit (var.syncthing-managed-clients) managed_clients hashes;
   unmanaged = {
-    # "roam".id = "OIKOKOT-LY4JWPX-T7OXE4D-I4ZC3IR-ZLMKFCO-IXSVEYZ-Y3FZOUB-LIG2XAO";
+    "supernote".id = "3LHXAND-FXDIDWR-7BYAIX4-3GW2BWY-IHTX7HH-LTEDI5T-W7ETGVC-BUP2NAF";
   };
 in
 assert (

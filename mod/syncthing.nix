@@ -75,8 +75,8 @@ in
   services.syncthing = lib.mkIf cfg.enable (
     assert lib.assertMsg (builtins.elem this devices) "${this} is not in devices in mod/syncthing.nix";
     {
-      inherit folders;
       settings = {
+        inherit folders;
         devices = var.syncthing.all;
       };
       key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;

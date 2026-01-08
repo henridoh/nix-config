@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  mypkgs,
   pkgs,
   ...
 }:
@@ -13,6 +14,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      mypkgs.supernote-tool
       bitwarden-desktop
       calibre
       colmena

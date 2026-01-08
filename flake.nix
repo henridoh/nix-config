@@ -52,12 +52,14 @@
       lib' = import ./lib.nix { inherit lib var; };
 
       pkgs_25-05 = import nixpkgs_25-05 { system = "x86_64-linux"; };
+      mypkgs = self.packages.x86_64-linux;
 
       specialArgs = rec {
         inherit
           inputs
           lib'
           pkgs_25-05
+          mypkgs
           var
           ;
         secrets = lib'.walk-dir ./secrets;
@@ -107,7 +109,7 @@
     // flake-utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = nixpkgs.legacyPackages.${system};
       in
       {
         devShells = import ./devshells { inherit pkgs; } // {
@@ -122,6 +124,7 @@
           };
         };
         formatter = pkgs.nixfmt-tree;
+        packages = import ./packages { inherit inputs system; };
       }
     );
 }

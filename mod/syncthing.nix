@@ -20,7 +20,7 @@ let
   folders-all = {
     documents = {
       id = "documents-hd";
-      path = if is-server then "/data/sync/documents-hd" else "/home/hd/Documents";
+      path = if is-server then "/data/sync/documents-hd" else "/home/hd/Sync";
       type = if is-server then "receiveencrypted" else "sendreceive";
       # all clients (desktops + servers) that have are a synthing peer but
       # with untrusted servers
@@ -47,7 +47,7 @@ let
   folders-desktop = {
     supernote-note = rec {
       id = "supernote-note";
-      path = if is-server then "/data/sync/${id}" else "/home/hd/Documents/Supernote/Notizen";
+      path = if is-server then "/data/sync/${id}" else "/home/hd/Sync/Supernote/Notizen";
       type = "sendreceive";
       devices = desktop-devices ++ [ "supernote" ];
       versioning = {

@@ -26,7 +26,7 @@ in
       };
       cgit."git" = {
         group = "git";
-        enable = true;
+        enable = false; # FIXME: find out what breaks here
         scanPath = gitpath;
         nginx.virtualHost = cgit-host;
       };

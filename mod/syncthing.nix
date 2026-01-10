@@ -47,7 +47,7 @@ let
   folders-desktop = {
     supernote-note = rec {
       id = "supernote-note";
-      path = if is-server then "/data/sync/${id}" else "/home/hd/Sync/Supernote/Notizen";
+      path = if is-server then "/data/sync/${id}" else "/home/hd/Sync/Dokumente/Supernote/Notizen";
       type = "sendreceive";
       devices = desktop-devices ++ [ "supernote" ];
       versioning = {

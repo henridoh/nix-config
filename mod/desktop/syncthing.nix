@@ -23,6 +23,8 @@
 
   systemd.tmpfiles.rules = [
     "d /home/hd/Sync 0755 hd users - -"
+    # I don't want desktop to be a broken symlink
+    "d /home/hd/Sync/Desktop 0755 hd users - -"
     "L+ /home/hd/Documents - - - - /home/hd/Sync/Dokumente"
     "L+ /home/hd/Desktop - - - - /home/hd/Sync/Desktop"
   ];

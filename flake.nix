@@ -65,27 +65,51 @@
         secrets = lib'.walk-dir ./secrets;
       };
 
-      mkDesktop =
-        host:
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = specialArgs // {
-            inherit host;
-          };
-          modules = [
-            (./host + "/${host}")
-            ./home
+      mkModule =
+        {
+          entry,
+          isServer ? false,
+        }:
+        {
+          imports = [
+            entry
             ./mod
-          ];
+          ]
+          ++ (if isServer then [ ] else [ ./home ]);
         };
+
+      # Not exposed as flake outputs because they depend on specialArgs
+      # if you add a host, make sure to add it to var/default.nix as well
+      nixosModules = {
+        "solo" = mkModule { entry = ./host/solo; };
+        "c2" = mkModule { entry = ./host/c2; };
+        "fw" = mkModule { entry = ./host/fw; };
+        "roam" = mkModule {
+          entry = ./host/roam;
+          isServer = true;
+        };
+      };
+
     in
     {
-      nixosConfigurations = {
-        # if you add a host, make sure to add it to var/default.nix as well
-        "solo" = mkDesktop "solo";
-        "c2" = mkDesktop "c2";
-        "fw" = mkDesktop "fw";
-      };
+      nixosConfigurations =
+        let
+          mkDesktop = host: {
+            name = host;
+            value = nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              inherit specialArgs;
+              modules = [ (nixosModules.${host}) ];
+            };
+          };
+        in
+        lib.listToAttrs (
+          map mkDesktop [
+            "solo"
+            "c2"
+            "fw"
+          ]
+        );
 
       colmenaHive = colmena.lib.makeHive {
         meta = {
@@ -99,10 +123,22 @@
             targetHost = "185.163.117.158";
             buildOnTarget = true;
           };
-          imports = [
-            ./host/roam
-            ./mod
-          ];
+          imports = [ nixosModules."roam" ];
+        };
+        "solo" = {
+          deployment.targetHost = null;
+          deployment.allowLocalDeployment = true;
+          imports = [ nixosModules."solo" ];
+        };
+        "c2" = {
+          deployment.targetHost = null;
+          deployment.allowLocalDeployment = true;
+          imports = [ nixosModules."c2" ];
+        };
+        "fw" = {
+          deployment.targetHost = null;
+          deployment.allowLocalDeployment = true;
+          imports = [ nixosModules."fw" ];
         };
       };
     }

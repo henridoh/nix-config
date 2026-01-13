@@ -32,7 +32,7 @@ in
       wg-quick = {
         interfaces = {
           "onet" = {
-            address = var.wg.wireguard-network.${host}.ips;
+            address = var.wg.wireguard-network.${config.networking.hostName}.ips;
             privateKeyFile = var.wg.keyFile;
             peers = [ (lib.removeAttrs var.wg.wireguard-network."roam" [ "ips" ]) ];
             mtu = 1248;

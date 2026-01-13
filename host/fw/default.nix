@@ -21,7 +21,6 @@
     inputs.lanzaboote.nixosModules.lanzaboote
     ./disko.nix
     ./hardware-configuration.nix
-    ./syncthing.nix
   ];
 
   # https://github.com/NixOS/nixos-hardware/issues/1603

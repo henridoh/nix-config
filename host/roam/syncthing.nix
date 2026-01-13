@@ -6,6 +6,11 @@ in
   services.syncthing = {
     enable = true;
     inherit guiAddress;
+
+    settings.folders.sync = {
+      path = "/data/sync/documents-hd";
+      type = "receiveencrypted";
+    };
   };
 
   services.nginx = {

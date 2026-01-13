@@ -109,6 +109,7 @@ with lib;
     ./security.nix
     ./services.nix
     ./software
+    ./syncthing.nix
     ./window-manager.nix
   ];
 

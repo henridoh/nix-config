@@ -12,20 +12,16 @@ let
   is-managed = var.syncthing.managed ? ${this};
   is-server = this == "roam";
 
-  devices = lib.attrNames var.syncthing.all;
-  desktop-devices = (lib.intersectLists var.nixos-desktops devices);
+  folders = {
+    sync = {
+      id = "documents-hd"; # don't change ID
+      path = lib.mkDefault (builtins.throw "You must set services.syncthing.folders.sync.path!!!");
+      type = lib.mkDefault (builtins.throw "You must set services.syncthing.folders.sync.type!!!");
 
-  folders = folders-all // (if config.hd.desktop.enable then folders-desktop else { });
-
-  folders-all = {
-    documents = {
-      id = "documents-hd";
-      path = if is-server then "/data/sync/documents-hd" else "/home/hd/Sync";
-      type = if is-server then "receiveencrypted" else "sendreceive";
       # all clients (desktops + servers) that have are a synthing peer but
       # with untrusted servers
       devices =
-        desktop-devices
+        var.syncthing.device-names.desktops
         ++ (
           if this != "roam" then
             [
@@ -37,19 +33,6 @@ let
           else
             [ ]
         );
-      versioning = {
-        type = "simple";
-        params.keep = "10";
-      };
-    };
-  };
-
-  folders-desktop = {
-    supernote-note = rec {
-      id = "supernote-note";
-      path = if is-server then "/data/sync/${id}" else "/home/hd/Sync/Dokumente/Supernote/Notizen";
-      type = "sendreceive";
-      devices = desktop-devices ++ [ "supernote" ];
       versioning = {
         type = "simple";
         params.keep = "10";
@@ -73,11 +56,12 @@ in
   };
 
   services.syncthing = lib.mkIf cfg.enable (
-    assert lib.assertMsg (builtins.elem this devices) "${this} is not in devices in mod/syncthing.nix";
+    assert lib.assertMsg (builtins.elem this var.syncthing.device-names.all)
+      "${this} is not in devices in mod/syncthing.nix";
     {
       settings = {
         inherit folders;
-        devices = var.syncthing.all;
+        devices = var.syncthing.devices;
       };
       key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
       cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";

@@ -17,5 +17,10 @@ assert (
 );
 rec {
   managed = builtins.mapAttrs (_: v: { id = v; }) hashes;
-  all = unmanaged // managed;
+  devices = unmanaged // managed;
+
+  device-names = rec {
+    all = lib.attrNames devices;
+    desktops = (lib.intersectLists var.nixos-desktops all);
+  };
 }

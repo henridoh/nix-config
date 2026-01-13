@@ -7,6 +7,12 @@
   };
   hd.desktop.enable = true;
 
+  services.syncthing = {
+    enable = true;
+    user = "hd";
+    configDir = "/home/hd/.config/syncthing";
+  };
+
   age.identityPaths = [
     "/root/.ssh/id_ed25519"
   ];

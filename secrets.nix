@@ -7,6 +7,7 @@ let
   secrets = [
     "roam/rclone-conf"
     "roam/firefox-sync-secret"
+    "roam/nextcloud-admin-password"
     "hd-password"
     "tlskey"
   ];

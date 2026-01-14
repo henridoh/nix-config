@@ -5,11 +5,12 @@
 {
   services = {
     nginx = {
-      # recommendedTlsSettings = true;
-      # recommendedProxySettings = true;
-      # recommendedOptimisation = true;
-
       enable = true;
+
+      recommendedTlsSettings = true;
+      recommendedProxySettings = true;
+      recommendedOptimisation = true;
+
       virtualHosts.default = {
         serverName = "_";
         default = true;

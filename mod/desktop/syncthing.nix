@@ -1,5 +1,10 @@
-{ lib, var, ... }:
 {
+  lib,
+  var,
+  config,
+  ...
+}:
+lib.mkIf config.hd.desktop.syncthing.enable {
   services.syncthing = {
     enable = lib.mkDefault true;
     user = "hd";

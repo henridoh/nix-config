@@ -88,6 +88,17 @@ in
             userName = "henridohmen";
           };
         };
+        "Nextcloud" = {
+          thunderbird = {
+            enable = true;
+            color = "#FFBE6F";
+          };
+          remote = {
+            type = "caldav";
+            url = "https://nextcloud.hdohmen.de/remote.php/dav/calendars/henri/default/";
+            userName = "henri";
+          };
+        };
       };
       accounts.contact.accounts = {
         "Kontakte" = {

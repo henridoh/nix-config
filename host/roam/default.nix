@@ -12,6 +12,7 @@
     ./git.nix
     ./hardware-configuration.nix
     ./networking.nix
+    ./nextcloud.nix
     ./services.nix
     ./syncthing.nix
   ];

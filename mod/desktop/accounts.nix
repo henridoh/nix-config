@@ -91,7 +91,7 @@ in
         "Nextcloud" = {
           thunderbird = {
             enable = true;
-            color = "#FFBE6F";
+            color = "#6fff71ff";
           };
           remote = {
             type = "caldav";

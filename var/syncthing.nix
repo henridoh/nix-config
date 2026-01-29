@@ -3,6 +3,7 @@ let
   inherit (lib.importJSON ./syncthing-managed-clients.json) managed_clients hashes;
   unmanaged = {
     "supernote".id = "3LHXAND-FXDIDWR-7BYAIX4-3GW2BWY-IHTX7HH-LTEDI5T-W7ETGVC-BUP2NAF";
+    "p9".id = "5QR3JDC-JAI6JGR-ZTT7R42-LLPQIN6-YQ6X47E-PWXGMGU-72RZIRA-PJR7VQZ";
   };
 in
 assert (

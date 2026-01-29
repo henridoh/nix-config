@@ -30,6 +30,7 @@
       url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
   };
 
   outputs =
@@ -44,6 +45,7 @@
       nixos-hardware,
       nixpkgs_25-05,
       nixpkgs,
+      simple-nixos-mailserver,
       vscode-extensions,
     }@inputs:
     let

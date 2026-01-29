@@ -11,6 +11,7 @@
     ./firefox-sync.nix
     ./git.nix
     ./hardware-configuration.nix
+    ./mail.nix
     ./networking.nix
     ./nextcloud.nix
     ./services.nix

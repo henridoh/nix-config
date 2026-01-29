@@ -63,6 +63,25 @@ in
           thunderbird.enable = true;
           gpg.key = "AB79213B044674AE";
         };
+
+        "SimpleMailserver" = rec {
+          address = "hd@hdohmen.de";
+          realName = "Henri Dohmen";
+          smtp = {
+            tls.enable = true;
+            host = "roam.hdohmen.de";
+            port = 465;
+          };
+          imap = {
+            tls.enable = true;
+            host = "roam.hdohmen.de";
+            port = 993;
+          };
+          userName = address;
+          thunderbird.enable = true;
+          gpg.key = "AB79213B044674AE";
+        };
+
       };
       accounts.calendar.accounts = {
         "Privat" = {

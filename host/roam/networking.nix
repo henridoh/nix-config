@@ -21,6 +21,17 @@ in
       interface = "ens3";
     };
 
+    firewall = {
+      enable = true;
+      interfaces."wg0" = {
+        allowedTCPPorts = [ 25565 ];
+      };
+      allowedTCPPorts = [
+        80
+        443
+      ];
+    };
+
     nat = {
       enable = true;
       externalInterface = "ens3";

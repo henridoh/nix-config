@@ -83,8 +83,10 @@ in
             banacorn.agda-mode
             dnut.rewrap-revived
             editorconfig.editorconfig
+            haskell.haskell
             james-yu.latex-workshop
             jnoortheen.nix-ide
+            justusadam.language-haskell
             leanprover.lean4
             ltex-plus.vscode-ltex-plus
             maximedenes.vscoq
@@ -93,7 +95,6 @@ in
             ms-toolsai.jupyter
             ocamllabs.ocaml-platform
             rust-lang.rust-analyzer
-            # ms-vscode-remote.remote-ssh
           ];
           userSettings = {
             "editor.rulers" = [ 80 ];

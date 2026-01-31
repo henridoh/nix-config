@@ -19,7 +19,7 @@ openssl req -nodes \
     | agenix -e secrets/tlskey.age
 
 cat > "$tmp/extfile" << EOF
-subjectAltName=DNS:roam.lan,DNS:*.roam.lan
+subjectAltName=DNS:roam.lan,DNS:*.roam.lan,DNS:git.lan
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage=digitalSignature,keyEncipherment

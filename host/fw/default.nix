@@ -49,7 +49,7 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelPackages = pkgs.linuxPackages_6_18;
+    kernelPackages = pkgs.linuxPackages_6_12;
     kernel.sysctl."kernel.sysrq" = 1;
     initrd.systemd.network.wait-online.enable = false;
     # Should fix infrequent GPU crashes

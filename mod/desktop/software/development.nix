@@ -88,6 +88,7 @@ in
             jnoortheen.nix-ide
             justusadam.language-haskell
             leanprover.lean4
+            llvm-vs-code-extensions.vscode-clangd
             ltex-plus.vscode-ltex-plus
             maximedenes.vscoq
             mkhl.direnv

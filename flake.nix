@@ -111,7 +111,21 @@
             "c2"
             "fw"
           ]
-        );
+        )
+        // {
+          "test-vm" = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            inherit specialArgs;
+            modules = [
+              {
+                imports = [
+                  ./mod
+                  ./host/test-vm
+                ];
+              }
+            ];
+          };
+        };
 
       colmenaHive = colmena.lib.makeHive {
         meta = {

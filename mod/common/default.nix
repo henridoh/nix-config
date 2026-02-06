@@ -6,6 +6,15 @@
   ...
 }:
 with lib;
+let
+  mkCommonOption =
+    name:
+    mkOption {
+      type = types.bool;
+      default = config.hd.common.enable;
+      description = "Enables" ++ name;
+    };
+in
 {
   options.hd.common.enable = mkOption {
     type = types.bool;
@@ -14,45 +23,12 @@ with lib;
   };
 
   options.hd.common = {
-    locale = {
-      enable = mkOption {
-        type = types.bool;
-        default = config.hd.common.enable;
-        description = "Enable locale settings";
-      };
-    };
-
-    nix = {
-      enable = mkOption {
-        type = types.bool;
-        default = config.hd.common.enable;
-        description = "Enable Nix-related configuration";
-      };
-    };
-
-    security = {
-      enable = mkOption {
-        type = types.bool;
-        default = config.hd.common.enable;
-        description = "Enable security-related configuration";
-      };
-    };
-
-    shell = {
-      enable = mkOption {
-        type = types.bool;
-        default = config.hd.common.enable;
-        description = "Enable basic shell utilities";
-      };
-    };
-
-    users = {
-      enable = mkOption {
-        type = types.bool;
-        default = config.hd.common.enable;
-        description = "Enable default user accounts";
-      };
-    };
+    locale.enable = mkCommonOption "locale settings";
+    nix.enable = mkCommonOption "nix settings";
+    security.enable = mkCommonOption "security settings";
+    shell.enable = mkCommonOption "shell utilities";
+    users.enable = mkCommonOption "default users";
+    secrets.enable = mkCommonOption "agenix secrets";
   };
 
   imports = [

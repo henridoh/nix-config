@@ -55,16 +55,12 @@ in
     group = config.services.syncthing.group;
   };
 
-  services.syncthing = lib.mkIf cfg.enable (
-    assert lib.assertMsg (builtins.elem this var.syncthing.device-names.all)
-      "${this} is not in devices in mod/syncthing.nix";
-    {
-      settings = {
-        inherit folders;
-        devices = var.syncthing.devices;
-      };
-      key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
-      cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";
-    }
-  );
+  services.syncthing = lib.mkIf cfg.enable ({
+    settings = {
+      inherit folders;
+      devices = var.syncthing.devices;
+    };
+    key = lib.optionalAttrs is-managed config.age.secrets.syncthing-key.path;
+    cert = lib.optionalAttrs is-managed "${../pki/syncthing + "/${this}.cert"}";
+  });
 }

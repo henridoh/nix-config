@@ -15,7 +15,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       bitwarden-desktop
-      calibre
+      # calibre FIXME: broken atm
       colmena
       fuzzel
       gh

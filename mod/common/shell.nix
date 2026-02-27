@@ -52,7 +52,7 @@ with lib;
     # Enabled by fish but takes soooo long.
     # This is apparently used by some of fish's
     # autocomplete features.
-    documentation.man.generateCaches = false;
+    documentation.man.cache.enable = false;
 
     # To stop the annoying error on entering wrong commands
     programs.command-not-found.enable = false;

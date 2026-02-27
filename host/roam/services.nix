@@ -20,10 +20,35 @@
       privateVirtualHosts."roam.lan" = {
         locations."/" = { };
       };
-      virtualHosts."roam.hdohmen.de" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = { };
+      virtualHosts = {
+        "www.henri-dohmen.de" = {
+          enableACME = true;
+          forceSSL = true;
+          globalRedirect = "https://hdohmen.de";
+        };
+        "henri-dohmen.de" = {
+          enableACME = true;
+          forceSSL = true;
+          globalRedirect = "https://hdohmen.de";
+        };
+        "www.hdohmen.de" = {
+          enableACME = true;
+          forceSSL = true;
+          globalRedirect = "https://hdohmen.de";
+        };
+        "hdohmen.de" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = { };
+          extraConfig = ''
+            access_log off;
+          '';
+        };
+        "roam.hdohmen.de" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = { };
+        };
       };
     };
 

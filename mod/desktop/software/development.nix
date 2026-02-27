@@ -22,7 +22,7 @@ in
       gnumake
       man-pages
       man-pages-posix
-      nixfmt-rfc-style
+      nixfmt
       python313
       python313Packages.mypy
       rustup

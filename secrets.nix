@@ -10,6 +10,7 @@ let
     "roam/nextcloud-admin-password"
     "hd-password"
     "tlskey"
+    "roam/mullvad-vpn-key"
   ];
   trusted-secrets = [
     # Can only be decrypted by clients

@@ -1,9 +1,21 @@
-{ var, ... }:
+{
+  var,
+  config,
+  secrets,
+  ...
+}:
 let
   wireguard-port = 51820;
 in
 
 {
+  age.secrets.mullvad-vpn-key = {
+    file = secrets.roam."mullvad-vpn-key.age";
+    owner = "root";
+    group = "root";
+    mode = "440";
+  };
+
   networking = {
     enableIPv6 = true;
 
@@ -47,6 +59,21 @@ in
         listenPort = wireguard-port;
         privateKeyFile = var.wg.keyFile;
         peers = var.wg.peers-for "roam";
+      };
+      interfaces."mullvad" = {
+        ips = [
+          "10.69.173.41/32"
+          "fc00:bbbb:bbbb:bb01::6:ad28/128"
+        ]; # free cat
+        privateKeyFile = config.age.secrets.mullvad-vpn-key.path;
+        peers = [
+          {
+            name = "de-fra-wg-007";
+            publicKey = "mTmrSuXmTnIC9l2Ur3/QgodGrVEhhIE3pRwOHZpiYys=";
+            allowedIPs = [ ];
+            endpoint = "de-fra-wg-007.relays.mullvad.net:51820";
+          }
+        ];
       };
     };
 

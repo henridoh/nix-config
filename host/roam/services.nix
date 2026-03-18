@@ -24,17 +24,17 @@
         "www.henri-dohmen.de" = {
           enableACME = true;
           forceSSL = true;
-          globalRedirect = "https://hdohmen.de";
+          globalRedirect = "hdohmen.de";
         };
         "henri-dohmen.de" = {
           enableACME = true;
           forceSSL = true;
-          globalRedirect = "https://hdohmen.de";
+          globalRedirect = "hdohmen.de";
         };
         "www.hdohmen.de" = {
           enableACME = true;
           forceSSL = true;
-          globalRedirect = "https://hdohmen.de";
+          globalRedirect = "hdohmen.de";
         };
         "hdohmen.de" = {
           enableACME = true;

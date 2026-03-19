@@ -1,9 +1,18 @@
 {
-  pkgs,
-  var,
+  config,
   lib,
+  pkgs,
+  secrets,
+  var,
   ...
 }:
+
+# We have a minimal `git` user accessible via ssh with a cgit instance on onet
+# at https://git.lan/. The `git` user has home at `/git` which is backed up
+# using rclone (see `backup.nix`).
+# Also, for collaboration, we have a forgejo instance
+# at https://git.hdohmen.de/.
+
 let
   gitpath = "/git";
   git-config = pkgs.writeText "git-git-config" ''
@@ -67,6 +76,7 @@ in
   services =
     let
       cgit-host = "git.lan";
+      fogrejo-cfg = config.services.forgejo;
     in
     {
       nginx = {
@@ -79,5 +89,49 @@ in
         nginx.virtualHost = cgit-host;
         gitHttpBackend.checkExportOkFiles = false;
       };
+
+      nginx = {
+        virtualHosts.${fogrejo-cfg.settings.server.DOMAIN} = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = ''
+            client_max_body_size 512M;
+          '';
+          locations."/".proxyPass = "http://localhost:${toString fogrejo-cfg.settings.server.HTTP_PORT}";
+        };
+      };
+
+      forgejo = {
+        enable = true;
+        database.type = "postgres";
+        lfs.enable = true;
+        settings = {
+          server = {
+            DOMAIN = "git.hdohmen.de";
+            ROOT_URL = "https://${fogrejo-cfg.settings.server.DOMAIN}/";
+            HTTP_PORT = 3000;
+          };
+          mailer = {
+            ENABLED = true;
+            SMTP_ADDR = "roam.hdohmen.de";
+            FROM = "noreply@git.hdohmen.de";
+            USER = "noreply@git.hdohmen.de";
+          };
+          service.DISABLE_REGISTRATION = true;
+          repository = {
+            ENABLE_PUSH_CREATE_USER = true;
+            ENABLE_PUSH_CREATE_ORG = true;
+          };
+        };
+        secrets = {
+          mailer.PASSWD = config.age.secrets.forgejo-mailer-password.path;
+        };
+      };
     };
+
+  age.secrets.forgejo-mailer-password = {
+    file = secrets.roam."forgejo-mailer-password.age";
+    mode = "400";
+    owner = "forgejo";
+  };
 }

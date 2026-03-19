@@ -5,12 +5,13 @@ let
   keys = ssh-keys.root;
   trusted-keys = ssh-keys.trusted-root;
   secrets = [
-    "roam/rclone-conf"
-    "roam/firefox-sync-secret"
-    "roam/nextcloud-admin-password"
     "hd-password"
-    "tlskey"
+    "roam/firefox-sync-secret"
+    "roam/forgejo-mailer-password"
     "roam/mullvad-vpn-key"
+    "roam/nextcloud-admin-password"
+    "roam/rclone-conf"
+    "tlskey"
   ];
   trusted-secrets = [
     # Can only be decrypted by clients
